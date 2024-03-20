@@ -8,6 +8,8 @@ import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
 
+
+// untuk mengatur navigation yang di inginkan.
 @Composable
 fun Navigation(){
     val navController = rememberNavController()

@@ -1,5 +1,6 @@
 package com.example.jastipin.navigation
 
+// daftar - daftar file yang ingin di gabungkan ke dalam navigation
 enum class NavigationScreen {
     SplashScreen,
     SignInScreen,
