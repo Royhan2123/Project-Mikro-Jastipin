@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Jastipin</string>
+    <string name="image_umkm1">Pesan makanan kamu dengan mudah</string>
+    <string name="home">Home</string>
+    <string name="daftar">Daftar</string>
+    <string name="email">Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="masuk">Masuk</string>
+    <string name="lupa_password">Lupa Password</string>
 </resources>
