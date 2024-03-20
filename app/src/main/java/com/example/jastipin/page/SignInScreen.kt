@@ -97,9 +97,12 @@ fun SignInScreen(navController: NavController) {
         ) {
             TabRow(
                 selectedTabIndex = selectTabIndex,
-                backgroundColor = grey
+                backgroundColor = grey,
             ) {
-                Tab(selected = selectTabIndex == 0,
+                Tab(
+                    selectedContentColor = orange,
+                    selected = selectTabIndex == 0,
+                    unselectedContentColor = Color.Gray,
                     onClick = {
                         selectTabIndex = 0
                     }) {
