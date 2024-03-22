@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
         android:font="@font/interblack"
         android:fontStyle="normal"
         android:fontWeight="900"
         app:font="@font/interblack"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/interbold"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/interbold"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/interextrabold"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/interextrabold"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/intermedium"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/intermedium"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/interregular"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/interregular"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/intersemibold"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/intersemibold"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/nunitobold"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/nunitobold"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/nunitomedium"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/nunitomedium"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/nunitoregular"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/nunitoregular"
+        app:fontStyle="normal"
+        app:fontWeight="900" />
+    <font
+        android:font="@font/nunitosemibold"
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        app:font="@font/nunitosemibold"
         app:fontStyle="normal"
         app:fontWeight="900" />
 </font-family>
