@@ -60,10 +60,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
-import com.example.jastipin.ui.theme.black
+import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.lightOrange
-import com.example.jastipin.ui.theme.lightSkin
 import com.example.jastipin.ui.theme.orange
 
 @Composable
@@ -267,7 +266,7 @@ fun SignInScreen(navController: NavController) {
             Text(
                 text = stringResource(id = R.string.lupa_password),
                 style = TextStyle(
-                    color = black,
+                    color = orange,
                     fontSize = 14.sp
                 )
             )
@@ -334,7 +333,9 @@ fun SignInScreen(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            Alignment.CenterVertically
         ) {
             Surface(
                 modifier = Modifier
@@ -359,12 +360,97 @@ fun SignInScreen(navController: NavController) {
                     contentDescription = stringResource(
                         id = R.string.google
                     ),
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier
+                        .size(30.dp)
+                        .scale(0.5f),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Spacer(modifier = Modifier.width(15.dp))
+            Surface(
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            size = 8.dp
+                        )
+                    )
+                    .border(
+                        width = 1.dp,
+                        color = lightOrange,
+                        shape = RoundedCornerShape(
+                            size = 8.dp
+                        )
+                    ),
+                color = Color.White
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.facebook),
+                    contentDescription = stringResource(
+                        id = R.string.facebook
+                    ),
+                    modifier = Modifier
+                        .size(30.dp)
+                        .scale(0.5f),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Spacer(modifier = Modifier.width(15.dp))
+            Surface(
+                modifier = Modifier
+                    .width(60.dp)
+                    .height(60.dp)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            size = 8.dp
+                        )
+                    )
+                    .border(
+                        width = 1.dp,
+                        color = lightOrange,
+                        shape = RoundedCornerShape(
+                            size = 8.dp
+                        )
+                    ),
+                color = Color.White
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.twitter),
+                    contentDescription = stringResource(
+                        id = R.string.twitter
+                    ),
+                    modifier = Modifier
+                        .size(30.dp)
                         .scale(0.5f),
                     contentScale = ContentScale.Crop
                 )
             }
         }
+        Spacer(modifier = Modifier.height(15.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            Alignment.CenterVertically
+        ) {
+            Text(
+                text = stringResource(
+                    id = R.string.apakah_anda_sudah_memiliki_akun
+                ),
+                fontSize = 13.sp,
+                color = grey,
+            )
+            TextButton(onClick = {
+                navController.navigate(
+                    NavigationScreen.SignUpScreen.name
+                )
+            }) {
+                Text(text = stringResource(id = R.string.daftar),
+                    fontSize = 13.sp,
+                    color = orange)
+            }
+        }
+
     }
 }
 
