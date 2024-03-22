@@ -24,7 +24,7 @@ fun Navigation(){
             SignInScreen(navController = navController)
         }
         composable(NavigationScreen.SignUpScreen.name) {
-            SignUpScreen(navController = navController)
+            SignUpScreen()
         }
     }
 }
