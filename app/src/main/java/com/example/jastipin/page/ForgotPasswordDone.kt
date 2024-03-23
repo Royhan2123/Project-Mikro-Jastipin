@@ -2,12 +2,14 @@ package com.example.jastipin.page
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,7 +32,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,16 +48,10 @@ import com.example.jastipin.ui.theme.orange
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ForgotPassword(navController: NavController) {
-    var txtAddEmail by rememberSaveable {
-        mutableStateOf("")
-    }
-
-    val keyboardController = LocalSoftwareKeyboardController.current
-
+fun ForgotPasswordDone(navController: NavController) {
     val lottieComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(
-            R.raw.animation_lottie
+            R.raw.animation_lottie3
         )
     )
 
@@ -68,7 +63,7 @@ fun ForgotPassword(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(20.dp)
     ) {
         LottieAnimation(
             composition = lottieComposition,
@@ -77,55 +72,20 @@ fun ForgotPassword(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(30.dp))
         Text(
-            text = "Forgot\nPassword?",
+            text = "Reset Password\nBerhasil!",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
-            text = stringResource(id = R.string.desk_forgot_password),
+            text = stringResource(id = R.string.password_reset),
             fontSize = 12.sp,
         )
-        Spacer(modifier = Modifier.height(20.dp))
-        OutlinedTextField(
-            value = txtAddEmail,
-            onValueChange = { txtAddEmail = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(55.dp),
-            placeholder = {
-                Text(
-                    text = stringResource(id = R.string.masukkan_email_Anda),
-                    style = TextStyle(
-                        color = Color.Gray,
-                        fontSize = 15.sp
-                    ),
-                )
-            },
-            maxLines = 1,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Done
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    keyboardController?.hide()
-                }
-            ),
-            textStyle = TextStyle(
-                fontSize = 14.sp,
-                color = Color.Black,
-            ),
-            shape = RoundedCornerShape(
-                10.dp
-            )
-        )
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(100.dp))
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.ForgotPassword2.name
+                    NavigationScreen.SignInScreen.name
                 )
             },
             modifier = Modifier
@@ -140,7 +100,7 @@ fun ForgotPassword(navController: NavController) {
             )
         ) {
             Text(
-                text = stringResource(id = R.string.lanjut),
+                text = stringResource(id = R.string.lanjutkan),
                 style = TextStyle(
                     color = Color.White,
                     fontSize = 15.sp
@@ -152,7 +112,7 @@ fun ForgotPassword(navController: NavController) {
 
 @Preview(showSystemUi = true)
 @Composable
-fun PreviewForgotPassword() {
-    ForgotPassword(navController = rememberNavController())
+fun PreviewForgotPasswordDone() {
+    ForgotPasswordDone(navController = rememberNavController())
 }
 
