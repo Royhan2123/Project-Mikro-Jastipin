@@ -258,7 +258,11 @@ fun SignInScreen(navController: NavController) {
             }
         )
         TextButton(
-            onClick = {/*TODO NOTHING HERE*/ },
+            onClick = {
+                navController.navigate(
+                    NavigationScreen.ForgotPassword.name
+                )
+            },
             modifier = Modifier.align(
                 Alignment.End
             )
@@ -304,7 +308,7 @@ fun SignInScreen(navController: NavController) {
         ) {
             Divider(
                 modifier = Modifier
-                    .width(150.dp)
+                    .width(135.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -320,7 +324,7 @@ fun SignInScreen(navController: NavController) {
             )
             Divider(
                 modifier = Modifier
-                    .width(150.dp)
+                    .width(135.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -445,9 +449,11 @@ fun SignInScreen(navController: NavController) {
                     NavigationScreen.SignUpScreen.name
                 )
             }) {
-                Text(text = stringResource(id = R.string.daftar),
+                Text(
+                    text = stringResource(id = R.string.daftar),
                     fontSize = 13.sp,
-                    color = orange)
+                    color = orange
+                )
             }
         }
 

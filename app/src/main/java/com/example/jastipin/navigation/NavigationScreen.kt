@@ -4,13 +4,15 @@ package com.example.jastipin.navigation
 enum class NavigationScreen {
     SplashScreen,
     SignInScreen,
-    SignUpScreen;
+    SignUpScreen,
+    ForgotPassword;
 
     fun fromRoute(route:String): NavigationScreen =
         when(route.substringBefore("/")) {
             SplashScreen.name -> SplashScreen
             SignInScreen.name -> SignInScreen
             SignUpScreen.name -> SignUpScreen
+            ForgotPassword.name -> ForgotPassword
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

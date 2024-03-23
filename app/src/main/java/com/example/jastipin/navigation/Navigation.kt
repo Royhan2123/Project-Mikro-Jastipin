@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jastipin.page.ForgotPassword
 import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
@@ -25,6 +26,9 @@ fun Navigation(){
         }
         composable(NavigationScreen.SignUpScreen.name) {
             SignUpScreen(navController)
+        }
+        composable(NavigationScreen.ForgotPassword.name) {
+            ForgotPassword(navController)
         }
     }
 }
