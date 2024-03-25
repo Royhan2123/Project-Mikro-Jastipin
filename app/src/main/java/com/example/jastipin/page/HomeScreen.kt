@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,7 +38,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
+import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
 import com.example.jastipin.ui.theme.grey
@@ -54,7 +58,7 @@ import com.example.jastipin.widget.LazyRowWithColumn
 import com.example.jastipin.widget.ListItem
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -97,6 +101,8 @@ fun HomeScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -107,6 +113,9 @@ fun HomeScreen() {
                         color = outlinebox,
                         shape = RoundedCornerShape(8.dp)
                     )
+                    .clickable {
+                        navController.navigate(NavigationScreen.SearchScreen.name)
+                    }
             ) {
                 Row(
                     modifier = Modifier.align(Alignment.CenterStart),
@@ -392,8 +401,8 @@ fun LazyColumn() {
 
 @Preview
 @Composable
-fun View() {
-    HomeScreen()
+fun view() {
+    HomeScreen(navController = rememberNavController())
 }
 
 
