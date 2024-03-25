@@ -43,6 +43,8 @@ import com.example.jastipin.ui.theme.nunitoMedium
 import com.example.jastipin.ui.theme.nunitoRegular
 import com.example.jastipin.ui.theme.nunitoSemiBold
 import com.example.jastipin.ui.theme.orange
+import com.example.jastipin.widget.ItemList
+import com.example.jastipin.widget.LazyColumnWithRows
 import com.example.jastipin.widget.LazyRowWithColumn
 import com.example.jastipin.widget.ListItem
 
@@ -211,6 +213,40 @@ fun HomeScreen() {
             }
 
             LazyRow()
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                Column {
+                    Text(
+                        text = "Termurah Hari ini",
+                        fontSize = 17.sp,
+                        fontFamily = nunitoBold,
+                        color = accblack
+                    )
+                    Text(
+                        text = "Pesan dan manfaatin promonya",
+                        fontSize = 11.sp,
+                        fontFamily = nunitoMedium,
+                        color = accgrey
+                    )
+                }
+                TextButton(
+                    onClick = { /* Tindakan ketika tombol ditekan */ },
+                ) {
+                    Text(
+                        text = "Lihat Selengkapnya",
+                        fontSize = 12.sp,
+                        fontFamily = nunitoSemiBold,
+                        color = orange
+                    )
+                }
+            }
+
+            LazyColumn()
         }
     }
 }
@@ -240,6 +276,29 @@ fun LazyRow() {
         )
     }
     LazyRowWithColumn(items = items)
+}
+
+@Composable
+fun LazyColumn() {
+    val items = listOf(
+        ItemList(
+            imageResId = R.drawable.columnimage1,
+            text1 = "Nasi Padang Putri Ujung",
+            text2 = "Text 2A",
+            text3 = "Text 3A"
+        ), ItemList(
+            imageResId = R.drawable.columnimage2,
+            text1 = "Ayam Bakar Krakatau",
+            text2 = "Text 2B",
+            text3 = "Text 3B"
+        ), ItemList(
+            imageResId = R.drawable.columnimage3,
+            text1 = "Martabak Golden",
+            text2 = "Text 2C",
+            text3 = "Text 3C"
+        )
+    )
+    LazyColumnWithRows(items = items)
 }
 
 @Preview
