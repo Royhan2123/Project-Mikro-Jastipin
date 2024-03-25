@@ -1,5 +1,6 @@
 package com.example.jastipin.widget
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,8 +16,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Start
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -31,11 +35,17 @@ import androidx.compose.ui.unit.sp
 import com.example.jastipin.R
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
+import com.example.jastipin.ui.theme.accyellow
 import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.orange
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
-data class ItemList(val imageResId: Int, val text1: String, val text2: String, val text3: String)
+data class ItemList(
+    val imageResId: Int,
+    val text1: String,
+    val text2: String,
+    val text3: String
+)
 
 @Composable
 fun LazyColumnWithRows(items: List<ItemList>) {
@@ -62,21 +72,29 @@ fun LazyColumnWithRows(items: List<ItemList>) {
                     Text(
                         text = item.text1,
                         fontFamily = nunitoBold,
-                        fontSize = 16.sp,
+                        fontSize = 18.sp,
                         color = accblack
                     )
                     Row {
                         Text(
                             text = item.text2,
                             fontFamily = nunitoBold,
-                            fontSize = 12.sp,
+                            fontSize = 14.sp,
                             color = accgrey
                         )
                         Spacer(modifier = Modifier.padding(end = 6.dp))
+                        Icon(
+                            modifier = Modifier.size(18.dp),
+                            imageVector = Icons.Default.Star,
+                            tint = accyellow,
+                            contentDescription = "Star"
+                        )
+                        Spacer(modifier = Modifier.padding(end = 2.dp))
+
                         Text(
                             text = item.text3,
                             fontFamily = nunitoBold,
-                            fontSize = 12.sp,
+                            fontSize = 14.sp,
                             color = accgrey
                         )
                     }

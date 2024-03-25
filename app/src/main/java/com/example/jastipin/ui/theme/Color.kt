@@ -15,5 +15,11 @@ val grey = Color(0xFFF4F4F4)
 
 val accgrey = Color(0xFFB7B7B7)
 val accblack = Color(0xFF1F2A37)
+val accyellow = Color(0xFFFFC436)
+val outlinebox = Color(0xFFD6D6D6)
+
+
+
+
 
 

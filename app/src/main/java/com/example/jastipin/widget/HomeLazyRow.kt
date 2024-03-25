@@ -3,6 +3,7 @@ package com.example.jastipin.widget
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,6 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jastipin.R
+import com.example.jastipin.ui.theme.accblack
+import com.example.jastipin.ui.theme.accgrey
 import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.orange
 
@@ -36,19 +39,23 @@ fun LazyRowWithColumn(items: List<ListItem>) {
     LazyRow {
         items(items) { item ->
             Column(
-                modifier = Modifier.padding(end = 18.dp)
-                    .width(120.dp)
+                modifier = Modifier
+                    .padding(end = 18.dp)
+                    .width(183.dp)
+                    .height(163.dp)
             ) {
                 Image(
                     painter = painterResource(id = item.imageResId),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(180.dp)
+                        .width(183.dp)
+                        .height(103.dp)
                         .clip(shape = RoundedCornerShape(6.dp))
                 )
-                Text(text = item.text1, fontFamily = nunitoBold, fontSize = 10.sp)
-                Text(text = item.text2, fontFamily = nunitoBold, fontSize = 14.sp)
-                Text(text = item.text3, fontFamily = nunitoBold, fontSize = 12.sp)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = item.text1, fontFamily = nunitoBold, fontSize = 12.sp, color = accgrey)
+                Text(text = item.text2, fontFamily = nunitoBold, fontSize = 16.sp, color = accblack)
+                Text(text = item.text3, fontFamily = nunitoBold, fontSize = 14.sp, color = accgrey)
             }
         }
     }
@@ -66,13 +73,13 @@ fun PreviewLazyRowWithColumn() {
                 text3 = "Text 3A"
             ),
             ListItem(
-                imageResId = R.drawable.image1,
+                imageResId = R.drawable.image2,
                 text1 = "Text 1B",
                 text2 = "Text 2B",
                 text3 = "Text 3B"
             ),
             ListItem(
-                imageResId = R.drawable.image1,
+                imageResId = R.drawable.image3,
                 text1 = "Text 1C",
                 text2 = "Text 2C",
                 text3 = "Text 3C"

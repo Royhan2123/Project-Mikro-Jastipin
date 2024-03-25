@@ -1,20 +1,22 @@
 package com.example.jastipin.page
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Colors
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -22,6 +24,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
@@ -29,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,6 +47,7 @@ import com.example.jastipin.ui.theme.nunitoMedium
 import com.example.jastipin.ui.theme.nunitoRegular
 import com.example.jastipin.ui.theme.nunitoSemiBold
 import com.example.jastipin.ui.theme.orange
+import com.example.jastipin.ui.theme.outlinebox
 import com.example.jastipin.widget.ItemList
 import com.example.jastipin.widget.LazyColumnWithRows
 import com.example.jastipin.widget.LazyRowWithColumn
@@ -75,14 +80,17 @@ fun HomeScreen() {
                         fontFamily = nunitoBold
                     )
                 }
-                Row {
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Star Icon", Modifier.size(45.dp)
+                Row(
+                    modifier = Modifier.align(Alignment.CenterVertically)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.iconumkm),
+                        contentDescription = "Star Icon", Modifier.size(35.dp)
                     )
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Star Icon", Modifier.size(45.dp)
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.iconchat),
+                        contentDescription = "Star Icon", Modifier.size(35.dp)
                     )
                 }
             }
@@ -93,21 +101,13 @@ fun HomeScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .background(Color.White)
+                    .background(grey)
                     .border(
-                        BorderStroke(
-                            color = Color.LightGray,
-                            width = 1.dp
-                        )
+                        width = 1.dp,
+                        color = outlinebox,
+                        shape = RoundedCornerShape(8.dp)
                     )
             ) {
-                TextField(
-                    value = "",
-                    onValueChange = {},
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 12.dp)
-                )
                 Row(
                     modifier = Modifier.align(Alignment.CenterStart),
                     horizontalArrangement = Arrangement.SpaceEvenly
@@ -122,11 +122,9 @@ fun HomeScreen() {
                         )
                     }
                     Text(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(vertical = 15.dp),
-                        text = "Jl. Raya Jayabaya No. 10",
-                        fontSize = 12.sp,
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        text = "Cari Produk Yang Kamu Inginkan",
+                        fontSize = 13.sp,
                         fontFamily = interRegular,
                         color = accgrey
                     )
@@ -147,37 +145,128 @@ fun HomeScreen() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(70.dp)
-                        .width(70.dp)
-                        .background(accgrey)
-                ) {
-                    Text(text = "pp")
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .height(70.dp)
+                            .width(70.dp)
+                            .background(grey)
+                            .border(
+                                width = 1.dp,
+                                color = outlinebox,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.nearby),
+                            contentDescription = null,
+                            modifier = Modifier.size(35.dp)
+                        )
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 6.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = "Terdekat",
+                        fontSize = 12.sp,
+                        fontFamily = nunitoSemiBold,
+                        color = accblack,
+                    )
                 }
-                Box(
-                    modifier = Modifier
-                        .height(70.dp)
-                        .width(70.dp)
-                        .background(accgrey)
-                ) {
-                    Text(text = "pp")
+
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .height(70.dp)
+                            .width(70.dp)
+                            .background(grey)
+                            .border(
+                                width = 1.dp,
+                                color = outlinebox,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.discount),
+                            contentDescription = null,
+                            modifier = Modifier.size(35.dp)
+                        )
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 6.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = "Murah",
+                        fontSize = 12.sp,
+                        fontFamily = nunitoSemiBold,
+                        color = accblack,
+                    )
                 }
-                Box(
-                    modifier = Modifier
-                        .height(70.dp)
-                        .width(70.dp)
-                        .background(accgrey)
-                ) {
-                    Text(text = "pp")
+
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .height(70.dp)
+                            .width(70.dp)
+                            .background(grey)
+                            .border(
+                                width = 1.dp,
+                                color = outlinebox,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.bestseller),
+                            contentDescription = null,
+                            modifier = Modifier.size(35.dp)
+                        )
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 6.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = "Paling Laku",
+                        fontSize = 12.sp,
+                        fontFamily = nunitoSemiBold,
+                        color = accblack,
+                    )
                 }
-                Box(
-                    modifier = Modifier
-                        .height(70.dp)
-                        .width(70.dp)
-                        .background(accgrey)
-                ) {
-                    Text(text = "pp")
+
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .height(70.dp)
+                            .width(70.dp)
+                            .background(grey)
+                            .border(
+                                width = 1.dp,
+                                color = outlinebox,
+                                shape = RoundedCornerShape(8.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.healthy),
+                            contentDescription = null,
+                            modifier = Modifier.size(35.dp)
+                        )
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 6.dp)
+                            .align(Alignment.CenterHorizontally),
+                        text = "Sehat",
+                        fontSize = 12.sp,
+                        fontFamily = nunitoSemiBold,
+                        color = accblack,
+                    )
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -185,7 +274,7 @@ fun HomeScreen() {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 Column {
                     Text(
                         text = "Rating Tertinggi",
@@ -214,12 +303,12 @@ fun HomeScreen() {
 
             LazyRow()
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 Column {
                     Text(
                         text = "Termurah Hari ini",
@@ -257,20 +346,20 @@ fun LazyRow() {
         listOf(
             ListItem(
                 imageResId = R.drawable.image1,
-                text1 = "Text 1A",
-                text2 = "Text 2A",
+                text1 = "0.64 km - 4 menit",
+                text2 = "Warung Steak Medan",
                 text3 = "Text 3A"
             ),
             ListItem(
                 imageResId = R.drawable.image1,
-                text1 = "Text 1B",
-                text2 = "Text 2B",
+                text1 = "1.02 km - 5 menit",
+                text2 = "Ayam Penyet Bu Ilis",
                 text3 = "Text 3B"
             ),
             ListItem(
                 imageResId = R.drawable.image1,
-                text1 = "Text 1C",
-                text2 = "Text 2C",
+                text1 = "0.64 km - 5 menit",
+                text2 = "Nasi Padang Putri Ujung",
                 text3 = "Text 3C"
             )
         )
@@ -284,18 +373,18 @@ fun LazyColumn() {
         ItemList(
             imageResId = R.drawable.columnimage1,
             text1 = "Nasi Padang Putri Ujung",
-            text2 = "Text 2A",
-            text3 = "Text 3A"
+            text2 = "0.64 km",
+            text3 = "4.6"
         ), ItemList(
             imageResId = R.drawable.columnimage2,
             text1 = "Ayam Bakar Krakatau",
-            text2 = "Text 2B",
-            text3 = "Text 3B"
+            text2 = "4.64 km",
+            text3 = "4.1"
         ), ItemList(
             imageResId = R.drawable.columnimage3,
             text1 = "Martabak Golden",
-            text2 = "Text 2C",
-            text3 = "Text 3C"
+            text2 = "8.64 km",
+            text3 = "4.2"
         )
     )
     LazyColumnWithRows(items = items)
