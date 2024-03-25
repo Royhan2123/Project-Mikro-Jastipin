@@ -68,7 +68,7 @@ fun ForgotPasswordDone(navController: NavController) {
         LottieAnimation(
             composition = lottieComposition,
             progress = progress,
-            modifier = Modifier.size(400.dp)
+            modifier = Modifier.size(350.dp)
         )
         Spacer(modifier = Modifier.height(30.dp))
         Text(

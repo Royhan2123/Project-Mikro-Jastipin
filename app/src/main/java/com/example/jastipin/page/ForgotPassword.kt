@@ -1,6 +1,5 @@
 package com.example.jastipin.page
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -73,7 +72,8 @@ fun ForgotPassword(navController: NavController) {
         LottieAnimation(
             composition = lottieComposition,
             progress = progress,
-            modifier = Modifier.size(400.dp)
+            modifier = Modifier.size(350.dp)
+                .align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.height(30.dp))
         Text(
