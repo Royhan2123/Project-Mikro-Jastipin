@@ -1,5 +1,6 @@
 package com.example.jastipin.page
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -14,16 +15,24 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.TabRow
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.SupervisorAccount
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.SupervisorAccount
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -33,6 +42,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,6 +53,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -65,10 +76,33 @@ import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.lightOrange
 import com.example.jastipin.ui.theme.orange
 
+data class TabItem(
+    val title: String,
+    val selectIcon: ImageVector,
+    val unselectIcon: ImageVector
+)
+
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HalamanSignInScreen(navController: NavController) {
+    val tabItem = listOf(
+        TabItem(
+            title = stringResource(id = R.string.masuk),
+            selectIcon = Icons.Filled.Home,
+            unselectIcon = Icons.Outlined.Home,
+        ),
+        TabItem(
+            title = stringResource(id = R.string.daftar),
+            unselectIcon = Icons.Outlined.SupervisorAccount,
+            selectIcon = Icons.Filled.SupervisorAccount,
+        )
+    )
     var selectTabIndex by remember {
         mutableStateOf(0)
+    }
+    val pagerState = rememberPagerState {
+        tabItem.size
     }
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -84,13 +118,14 @@ fun HalamanSignInScreen(navController: NavController) {
                 contentDescription = stringResource(id = R.string.umkm1),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(229.dp)
+                    .height(225.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             bottomStart = 18.dp,
                             bottomEnd = 18.dp
                         )
-                    )
+                    ),
+                contentScale = ContentScale.Crop
             )
             Surface(
                 modifier = Modifier
@@ -119,33 +154,63 @@ fun HalamanSignInScreen(navController: NavController) {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(30.dp))
         Column(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier
+                .padding(
+                    start = 20.dp,
+                    end = 20.dp,
+                    top = 20.dp
+                )
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             TabRow(
                 selectedTabIndex = selectTabIndex,
-                backgroundColor = grey,
+                backgroundColor = Color.White,
             ) {
-                Tab(
-                    selectedContentColor = orange,
-                    selected = selectTabIndex == 0,
-                    unselectedContentColor = Color.Gray,
-                    onClick = {
-                        selectTabIndex = 0
-                    }) {
-                    Text(text = stringResource(id = R.string.home))
+                tabItem.forEachIndexed { index, tabItem ->
+                    Tab(
+                        selected = index == selectTabIndex,
+                        onClick = {
+                            selectTabIndex = index
+                        },
+                        text = {
+                            Text(
+                                text = tabItem.title,
+                                color = if (index == selectTabIndex) orange else Color.Gray // Change text color based on selection
+                            )
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = if (index == selectTabIndex) {
+                                    tabItem.selectIcon
+                                } else tabItem.unselectIcon,
+                                contentDescription = tabItem.title,
+                                tint = if (index == selectTabIndex) orange else Color.Gray // Change icon color based on selection
+                            )
+                        }
+                    )
                 }
-                Tab(selected = selectTabIndex == 1,
-                    onClick = {
-                        selectTabIndex = 1
-                    }) {
-                    Text(text = stringResource(id = R.string.daftar))
+            }
+            LaunchedEffect(selectTabIndex) {
+                pagerState.scrollToPage(selectTabIndex)
+            }
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f)
+            ) { index ->
+                when (index) {
+                    0 -> SignInScreen(navController)
+                    1 -> SignUpScreen(navController)
+                    else -> SignInScreen(navController) // Default to SignInScreen
                 }
             }
         }
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -166,6 +231,7 @@ fun SignInScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(20.dp)
+            .verticalScroll(state = rememberScrollState())
     ) {
         OutlinedTextField(
             value = txtEmail,

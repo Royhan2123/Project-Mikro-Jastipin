@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.page.ForgotPassword
 import com.example.jastipin.page.ForgotPassword2
 import com.example.jastipin.page.ForgotPasswordDone
+import com.example.jastipin.page.HalamanSignInScreen
 import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
@@ -37,6 +38,9 @@ fun Navigation(){
         }
         composable(NavigationScreen.ForgotPasswordDone.name) {
             ForgotPasswordDone(navController)
+        }
+        composable(NavigationScreen.HalamanSignInScreen.name) {
+            HalamanSignInScreen(navController)
         }
     }
 }

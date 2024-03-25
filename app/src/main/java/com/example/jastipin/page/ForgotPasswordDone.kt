@@ -85,7 +85,7 @@ fun ForgotPasswordDone(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.SignInScreen.name
+                    NavigationScreen.HalamanSignInScreen.name
                 )
             },
             modifier = Modifier

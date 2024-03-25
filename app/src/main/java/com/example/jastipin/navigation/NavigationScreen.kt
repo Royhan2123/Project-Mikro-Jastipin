@@ -3,6 +3,7 @@ package com.example.jastipin.navigation
 // daftar - daftar file yang ingin di gabungkan ke dalam navigation
 enum class NavigationScreen {
     SplashScreen,
+    HalamanSignInScreen,
     SignInScreen,
     SignUpScreen,
     ForgotPassword,
@@ -12,7 +13,8 @@ enum class NavigationScreen {
     fun fromRoute(route:String): NavigationScreen =
         when(route.substringBefore("/")) {
             SplashScreen.name -> SplashScreen
-            SignInScreen.name -> SignInScreen
+            SplashScreen.name -> SplashScreen
+            HalamanSignInScreen.name -> HalamanSignInScreen
             SignUpScreen.name -> SignUpScreen
             ForgotPassword.name -> ForgotPassword
             ForgotPassword2.name -> ForgotPassword2
