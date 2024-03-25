@@ -374,7 +374,7 @@ fun SignInScreen(navController: NavController) {
         ) {
             Divider(
                 modifier = Modifier
-                    .width(135.dp)
+                    .width(100.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -390,7 +390,7 @@ fun SignInScreen(navController: NavController) {
             )
             Divider(
                 modifier = Modifier
-                    .width(135.dp)
+                    .width(100.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
