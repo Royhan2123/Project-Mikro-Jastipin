@@ -15,20 +15,27 @@ import com.example.jastipin.page.SplashScreen
 
 // untuk mengatur navigation yang di inginkan.
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
 
     NavHost(
         navController = navController,
-        startDestination = NavigationScreen.SplashScreen.name ) {
+        startDestination = NavigationScreen.SplashScreen.name
+    ) {
         composable(NavigationScreen.SplashScreen.name) {
             SplashScreen(navController = navController)
         }
         composable(NavigationScreen.SignInScreen.name) {
-            SignInScreen(navController = navController)
+            SignInScreen(
+                navController = navController,
+                onDaftarClicked = {},
+            )
         }
         composable(NavigationScreen.SignUpScreen.name) {
-            SignUpScreen(navController)
+            SignUpScreen(
+                navController,
+                onLoginClicked = {}
+            )
         }
         composable(NavigationScreen.ForgotPassword.name) {
             ForgotPassword(navController)

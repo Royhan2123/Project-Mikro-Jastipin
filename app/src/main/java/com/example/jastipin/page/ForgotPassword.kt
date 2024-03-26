@@ -29,7 +29,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,6 +41,9 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
+import com.example.jastipin.ui.theme.interBold
+import com.example.jastipin.ui.theme.interMedium
+import com.example.jastipin.ui.theme.interRegular
 import com.example.jastipin.ui.theme.orange
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -79,12 +81,14 @@ fun ForgotPassword(navController: NavController) {
         Text(
             text = "Forgot\nPassword?",
             fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
+            fontFamily = interBold,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = stringResource(id = R.string.desk_forgot_password),
             fontSize = 12.sp,
+            fontFamily = interRegular,
         )
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
@@ -98,7 +102,9 @@ fun ForgotPassword(navController: NavController) {
                     text = stringResource(id = R.string.masukkan_email_Anda),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },

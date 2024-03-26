@@ -48,6 +48,8 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
+import com.example.jastipin.ui.theme.interBold
+import com.example.jastipin.ui.theme.interRegular
 import com.example.jastipin.ui.theme.orange
 
 
@@ -108,11 +110,13 @@ fun ForgotPassword2(navController: NavController) {
             text = stringResource(id = R.string.verifikasi_otp),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
+            fontFamily = interBold,
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = stringResource(id = R.string.desk_kode_otp),
             fontSize = 12.sp,
+            fontFamily = interRegular,
         )
         Spacer(modifier = Modifier.height(30.dp))
         Row(

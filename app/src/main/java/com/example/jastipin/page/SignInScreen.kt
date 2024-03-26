@@ -2,6 +2,7 @@ package com.example.jastipin.page
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -72,8 +73,13 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
+import com.example.jastipin.ui.theme.black
 import com.example.jastipin.ui.theme.grey
+import com.example.jastipin.ui.theme.interBold
+import com.example.jastipin.ui.theme.interMedium
+import com.example.jastipin.ui.theme.interSemiBold
 import com.example.jastipin.ui.theme.lightOrange
+import com.example.jastipin.ui.theme.lightSkin
 import com.example.jastipin.ui.theme.orange
 
 data class TabItem(
@@ -162,34 +168,48 @@ fun HalamanSignInScreen(navController: NavController) {
                     top = 20.dp
                 )
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
         ) {
             TabRow(
                 selectedTabIndex = selectTabIndex,
                 backgroundColor = Color.White,
+                modifier = Modifier.clip(
+                    shape = RoundedCornerShape(10.dp)
+                ),
+                contentColor = lightSkin
             ) {
                 tabItem.forEachIndexed { index, tabItem ->
-                    Tab(
-                        selected = index == selectTabIndex,
-                        onClick = {
-                            selectTabIndex = index
-                        },
-                        text = {
-                            Text(
-                                text = tabItem.title,
-                                color = if (index == selectTabIndex) orange else Color.Gray // Change text color based on selection
-                            )
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = if (index == selectTabIndex) {
-                                    tabItem.selectIcon
-                                } else tabItem.unselectIcon,
-                                contentDescription = tabItem.title,
-                                tint = if (index == selectTabIndex) orange else Color.Gray // Change icon color based on selection
-                            )
-                        }
-                    )
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(60.dp)
+                            .padding(start = 15.dp,end = 15.dp),
+                        color = if (index == selectTabIndex) orange else lightSkin,
+                        shape = RoundedCornerShape(20.dp)
+                    ) {
+                        Tab(
+                            selected = index == selectTabIndex,
+                            onClick = {
+                                selectTabIndex = index
+                            },
+                            text = {
+                                Text(
+                                    text = tabItem.title,
+                                    fontFamily = interBold,
+                                    color = if (index == selectTabIndex) Color.White else orange
+                                )
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = if (index == selectTabIndex) {
+                                        tabItem.selectIcon
+                                    } else tabItem.unselectIcon,
+                                    contentDescription = tabItem.title,
+                                    tint = if (index == selectTabIndex) Color.White else orange
+
+                                )
+                            }
+                        )
+                    }
                 }
             }
             LaunchedEffect(selectTabIndex) {
@@ -202,9 +222,13 @@ fun HalamanSignInScreen(navController: NavController) {
                     .weight(1f)
             ) { index ->
                 when (index) {
-                    0 -> SignInScreen(navController)
-                    1 -> SignUpScreen(navController)
-                    else -> SignInScreen(navController) // Default to SignInScreen
+                    0 -> SignInScreen(navController) {
+                        selectTabIndex = 1
+                    }
+                    1 -> SignUpScreen(navController){
+                        selectTabIndex = 0
+                    }
+                    else -> SignInScreen(navController, onDaftarClicked = {})
                 }
             }
         }
@@ -214,7 +238,10 @@ fun HalamanSignInScreen(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignInScreen(navController: NavController) {
+fun SignInScreen(
+    navController: NavController,
+    onDaftarClicked: () -> Unit,
+) {
     var txtEmail by rememberSaveable {
         mutableStateOf("")
     }
@@ -244,7 +271,9 @@ fun SignInScreen(navController: NavController) {
                     text = stringResource(id = R.string.email),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -279,7 +308,9 @@ fun SignInScreen(navController: NavController) {
                     text = stringResource(id = R.string.kata_sandi),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -337,7 +368,9 @@ fun SignInScreen(navController: NavController) {
                 text = stringResource(id = R.string.lupa_password),
                 style = TextStyle(
                     color = orange,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    fontFamily = interSemiBold,
+                    fontWeight = FontWeight.SemiBold
                 )
             )
         }
@@ -362,7 +395,9 @@ fun SignInScreen(navController: NavController) {
                 text = stringResource(id = R.string.masuk),
                 style = TextStyle(
                     color = Color.White,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
+                    fontFamily = interSemiBold,
+                    fontWeight = FontWeight.SemiBold
                 )
             )
         }
@@ -374,7 +409,7 @@ fun SignInScreen(navController: NavController) {
         ) {
             Divider(
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(120.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -387,10 +422,12 @@ fun SignInScreen(navController: NavController) {
                 text = stringResource(id = R.string.atau),
                 fontSize = 15.sp,
                 color = grey,
+                fontFamily = interSemiBold,
+                fontWeight = FontWeight.SemiBold
             )
             Divider(
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(120.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -509,27 +546,31 @@ fun SignInScreen(navController: NavController) {
                 ),
                 fontSize = 13.sp,
                 color = grey,
+                fontFamily = interSemiBold,
+                fontWeight = FontWeight.SemiBold
             )
             TextButton(onClick = {
-                navController.navigate(
-                    NavigationScreen.SignUpScreen.name
-                )
+                onDaftarClicked()
             }) {
                 Text(
                     text = stringResource(id = R.string.daftar),
                     fontSize = 13.sp,
-                    color = orange
+                    color = orange,
+                    fontFamily = interSemiBold,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
         }
-
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewSignInScreen() {
-    SignInScreen(navController = rememberNavController())
+    SignInScreen(
+        navController = rememberNavController(),
+        onDaftarClicked = {},
+    )
 }
 
 @Preview(showSystemUi = true)

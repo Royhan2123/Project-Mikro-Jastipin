@@ -46,6 +46,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -56,14 +57,18 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
-import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.grey
+import com.example.jastipin.ui.theme.interMedium
+import com.example.jastipin.ui.theme.interSemiBold
 import com.example.jastipin.ui.theme.lightOrange
 import com.example.jastipin.ui.theme.orange
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignUpScreen(navController: NavController) {
+fun SignUpScreen(
+    navController: NavController,
+    onLoginClicked: () -> Unit,
+) {
     var txtEmail by rememberSaveable {
         mutableStateOf("")
     }
@@ -105,7 +110,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.nama),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -141,7 +148,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.email),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -176,7 +185,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.nomor_telepon),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -211,7 +222,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.alamat),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -246,7 +259,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.kata_sandi),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -302,7 +317,9 @@ fun SignUpScreen(navController: NavController) {
                     text = stringResource(id = R.string.konfirmasi_kata_sandi),
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 15.sp,
+                        fontFamily = interMedium,
+                        fontWeight = FontWeight.Medium
                     ),
                 )
             },
@@ -349,9 +366,7 @@ fun SignUpScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                navController.popBackStack(
-                    // TODO THIS NOT FUNCTION
-                )
+                // TODO
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -368,7 +383,9 @@ fun SignUpScreen(navController: NavController) {
                 text = stringResource(id = R.string.daftar),
                 style = TextStyle(
                     color = Color.White,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
+                    fontFamily = interSemiBold,
+                    fontWeight = FontWeight.SemiBold
                 )
             )
         }
@@ -380,7 +397,7 @@ fun SignUpScreen(navController: NavController) {
         ) {
             Divider(
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(120.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -393,10 +410,12 @@ fun SignUpScreen(navController: NavController) {
                 text = stringResource(id = R.string.atau),
                 fontSize = 15.sp,
                 color = grey,
+                fontFamily = interSemiBold,
+                fontWeight = FontWeight.SemiBold
             )
             Divider(
                 modifier = Modifier
-                    .width(100.dp)
+                    .width(120.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -514,15 +533,18 @@ fun SignUpScreen(navController: NavController) {
                 ),
                 fontSize = 13.sp,
                 color = grey,
+                fontFamily = interSemiBold,
+                fontWeight = FontWeight.SemiBold
             )
             TextButton(onClick = {
-                navController.navigate(
-                    NavigationScreen.SignInScreen.name
-                )
+                onLoginClicked()
             }) {
-                Text(text = stringResource(id = R.string.masuk),
+                Text(
+                    text = stringResource(id = R.string.masuk),
                     fontSize = 13.sp,
-                    color = orange
+                    color = orange,
+                    fontFamily = interSemiBold,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
         }
@@ -533,5 +555,5 @@ fun SignUpScreen(navController: NavController) {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewSignUpScreen() {
-    SignUpScreen(navController = rememberNavController())
+    SignUpScreen(navController = rememberNavController(), onLoginClicked = {})
 }
