@@ -101,8 +101,6 @@ fun HomeScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
-
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
