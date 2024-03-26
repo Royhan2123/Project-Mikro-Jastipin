@@ -1,7 +1,9 @@
 package com.example.jastipin.page
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,28 +15,75 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldColors
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.TextFieldDefaults.textFieldColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
+import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
+import com.example.jastipin.ui.theme.accgrey2
+import com.example.jastipin.ui.theme.accyellow
 import com.example.jastipin.ui.theme.grey
+import com.example.jastipin.ui.theme.interRegular
+import com.example.jastipin.ui.theme.nunitoBold
+import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.outlinebox
 import com.example.jastipin.widget.SearchItemList
 import com.example.jastipin.widget.SearchLazyColumn
+import com.example.jastipin.widget.SearchViewModel
+
+data class SearchItemList(
+    val imageResId: Int,
+    val namaumkm: String,
+    val ratingumkm: String,
+    val lokasiumkm: String
+) {
+    fun doesMatchSearchQuery(query: String): Boolean {
+        val matchingCombinations = listOf(
+            "$imageResId",
+            "$namaumkm",
+            "$ratingumkm",
+            "$lokasiumkm"
+        )
+
+        return matchingCombinations.any {
+            it.contains(query, ignoreCase = true)
+        }
+    }
+}
 
 @Composable
 fun SearchScreen(navController: NavController) {
+    val viewModel = viewModel<SearchViewModel>()
+    val searchText by viewModel.searchText.collectAsState()
+    val products by viewModel.products.collectAsState()
+    val isSearching by viewModel.isSearching.collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -53,16 +102,19 @@ fun SearchScreen(navController: NavController) {
             ) {
                 Box(
                     modifier = Modifier
-                        .size(60.dp)
+                        .size(55.dp)
                         .border(
                             width = 1.dp,
                             color = outlinebox,
                             shape = RoundedCornerShape(8.dp)
-                        ),
+                        )
+                        .clickable {
+                            navController.navigate(NavigationScreen.HomeScreen.name)
+                        },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(25.dp),
                         imageVector = Icons.Default.ArrowBackIosNew,
                         contentDescription = null,
                         tint = accblack,
@@ -70,8 +122,8 @@ fun SearchScreen(navController: NavController) {
                 }
                 Box(
                     modifier = Modifier
-                        .width(300.dp)
-                        .height(60.dp)
+                        .width(305.dp)
+                        .height(55.dp)
                         .background(grey)
                         .border(
                             width = 1.dp,
@@ -79,58 +131,87 @@ fun SearchScreen(navController: NavController) {
                             shape = RoundedCornerShape(8.dp)
                         )
                 ) {
-
+                    TextField(
+                        colors = textFieldColors(grey),
+                        value = searchText,
+                        onValueChange = viewModel::onSearchTextChange,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        placeholder = { androidx.compose.material.Text(text = "Cari Yang Kamu Inginkan") }
+                    )
                 }
             }
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
-            SearchLazyColumn()
+            if (isSearching) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            } else {
+                androidx.compose.foundation.lazy.LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    items(products) { product ->
+                        Row(
+                            modifier = Modifier
+                                .padding(top = 14.dp, bottom = 14.dp)
+                                .fillMaxWidth()
+                        ) {
+                            Image(
+                                painter = painterResource(id = product.imageResId),
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .height(80.dp)
+                                    .width(80.dp)
+                                    .clip(shape = RoundedCornerShape(4.dp))
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .padding(start = 18.dp)
+                                    .align(Alignment.CenterVertically)
+                            ) {
+                                androidx.compose.material.Text(
+                                    text = product.namaumkm,
+                                    fontFamily = nunitoBold,
+                                    fontSize = 16.sp,
+                                    color = accblack
+                                )
+                                Row {
+                                    androidx.compose.material.Icon(
+                                        modifier = Modifier.size(16.dp),
+                                        imageVector = Icons.Default.Star,
+                                        tint = accyellow,
+                                        contentDescription = "Star"
+                                    )
+                                    Spacer(modifier = Modifier.padding(end = 6.dp))
+                                    androidx.compose.material.Text(
+                                        text = product.ratingumkm,
+                                        fontFamily = nunitoBold,
+                                        fontSize = 13.sp,
+                                        color = accgrey
+                                    )
+                                }
+
+                                androidx.compose.material.Text(
+                                    text = product.lokasiumkm,
+                                    fontFamily = nunitoBold,
+                                    fontSize = 14.sp,
+                                    color = orange
+                                )
+                            }
+                        }
+
+                        Divider(color = accgrey2, thickness = 2.dp)
+                    }
+                    }
+                }
+            }
         }
     }
-}
 
-@Composable
-fun SearchLazyColumn() {
-    val items = listOf(
-        SearchItemList(
-            imageResId = R.drawable.searchimage1,
-            text1 = "Bakso & Soto Kedai Berkah",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        ),
-        SearchItemList(
-            imageResId = R.drawable.searchimage2,
-            text1 = "Dapur Nenek Restaurant",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        ),
-        SearchItemList(
-            imageResId = R.drawable.searchimage3,
-            text1 = "Aroma Restaurant Lubuklinggau",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        ),
-        SearchItemList(
-            imageResId = R.drawable.searchimage4,
-            text1 = "Seafood 21 dan BURYAM",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        ),
-        SearchItemList(
-            imageResId = R.drawable.searchimage5,
-            text1 = "Pindang Tulang",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        ),
-        SearchItemList(
-            imageResId = R.drawable.searchimage6,
-            text1 = "Pagi sore Restaurant",
-            text2 = "4.9",
-            text3 = "Lubuk Linggau"
-        )
-    )
-    SearchLazyColumn(items = items)
-}
 
 @Preview
 @Composable

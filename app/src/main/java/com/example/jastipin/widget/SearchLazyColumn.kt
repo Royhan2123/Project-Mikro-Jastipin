@@ -45,10 +45,24 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 data class SearchItemList(
     val imageResId: Int,
-    val text1: String,
-    val text2: String,
-    val text3: String
-)
+    val namaumkm: String,
+    val ratingumkm: String,
+    val lokasiumkm: String
+) {
+    fun doesMatchSearchQuery(query: String): Boolean {
+        val matchingCombinations = listOf(
+            "$imageResId",
+            "$namaumkm",
+            "$ratingumkm",
+            "$lokasiumkm"
+        )
+
+        return matchingCombinations.any {
+            it.contains(query, ignoreCase = true)
+        }
+    }
+}
+
 
 @Composable
 fun SearchLazyColumn(items: List<SearchItemList>) {
@@ -73,7 +87,7 @@ fun SearchLazyColumn(items: List<SearchItemList>) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Text(
-                        text = item.text1,
+                        text = item.namaumkm,
                         fontFamily = nunitoBold,
                         fontSize = 16.sp,
                         color = accblack
@@ -87,7 +101,7 @@ fun SearchLazyColumn(items: List<SearchItemList>) {
                         )
                         Spacer(modifier = Modifier.padding(end = 6.dp))
                         Text(
-                            text = item.text2,
+                            text = item.ratingumkm,
                             fontFamily = nunitoBold,
                             fontSize = 13.sp,
                             color = accgrey
@@ -95,7 +109,7 @@ fun SearchLazyColumn(items: List<SearchItemList>) {
                     }
 
                     Text(
-                        text = item.text3,
+                        text = item.lokasiumkm,
                         fontFamily = nunitoBold,
                         fontSize = 14.sp,
                         color = orange
@@ -115,21 +129,21 @@ fun PreviewLazyColumn() {
     val items = listOf(
         SearchItemList(
             imageResId = R.drawable.columnimage1,
-            text1 = "Text 1A",
-            text2 = "Text 2A",
-            text3 = "Text 3A"
+            namaumkm = "Text 1A",
+            ratingumkm = "Text 2A",
+            lokasiumkm = "Text 3A"
         ),
         SearchItemList(
             imageResId = R.drawable.columnimage2,
-            text1 = "Text 1B",
-            text2 = "Text 2B",
-            text3 = "Text 3B"
+            namaumkm = "Text 1B",
+            ratingumkm = "Text 2B",
+            lokasiumkm = "Text 3B"
         ),
         SearchItemList(
             imageResId = R.drawable.columnimage3,
-            text1 = "Text 1C",
-            text2 = "Text 2C",
-            text3 = "Text 3C"
+            namaumkm = "Text 1C",
+            ratingumkm = "Text 2C",
+            lokasiumkm = "Text 3C"
         )
     )
     SearchLazyColumn(items = items)
