@@ -397,7 +397,7 @@ fun SignUpScreen(
         ) {
             Divider(
                 modifier = Modifier
-                    .width(120.dp)
+                    .width(110.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -415,7 +415,7 @@ fun SignUpScreen(
             )
             Divider(
                 modifier = Modifier
-                    .width(120.dp)
+                    .width(110.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp

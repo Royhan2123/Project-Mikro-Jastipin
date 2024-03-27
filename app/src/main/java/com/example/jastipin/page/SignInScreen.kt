@@ -2,7 +2,6 @@ package com.example.jastipin.page
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -73,7 +72,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
-import com.example.jastipin.ui.theme.black
 import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interBold
 import com.example.jastipin.ui.theme.interMedium
@@ -213,7 +211,10 @@ fun HalamanSignInScreen(navController: NavController) {
                 }
             }
             LaunchedEffect(selectTabIndex) {
-                pagerState.scrollToPage(selectTabIndex)
+            pagerState.animateScrollToPage(selectTabIndex)
+            }
+            LaunchedEffect(pagerState.currentPage) {
+                selectTabIndex = pagerState.currentPage
             }
             HorizontalPager(
                 state = pagerState,
@@ -225,7 +226,7 @@ fun HalamanSignInScreen(navController: NavController) {
                     0 -> SignInScreen(navController) {
                         selectTabIndex = 1
                     }
-                    1 -> SignUpScreen(navController){
+                    1 -> SignUpScreen(navController) {
                         selectTabIndex = 0
                     }
                     else -> SignInScreen(navController, onDaftarClicked = {})
@@ -409,7 +410,7 @@ fun SignInScreen(
         ) {
             Divider(
                 modifier = Modifier
-                    .width(120.dp)
+                    .width(110.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -427,7 +428,7 @@ fun SignInScreen(
             )
             Divider(
                 modifier = Modifier
-                    .width(120.dp)
+                    .width(110.dp)
                     .clip(
                         shape = RoundedCornerShape(
                             size = 20.dp
@@ -544,7 +545,7 @@ fun SignInScreen(
                 text = stringResource(
                     id = R.string.apakah_anda_sudah_memiliki_akun
                 ),
-                fontSize = 13.sp,
+                fontSize = 11.sp,
                 color = grey,
                 fontFamily = interSemiBold,
                 fontWeight = FontWeight.SemiBold
@@ -554,7 +555,7 @@ fun SignInScreen(
             }) {
                 Text(
                     text = stringResource(id = R.string.daftar),
-                    fontSize = 13.sp,
+                    fontSize = 12.sp,
                     color = orange,
                     fontFamily = interSemiBold,
                     fontWeight = FontWeight.SemiBold
