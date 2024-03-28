@@ -6,6 +6,7 @@ enum class NavigationScreen {
     SignInScreen,
     SignUpScreen,
     HomeScreen,
+    DetailScreen,
     SearchScreen;
 
     fun fromRoute(route:String): NavigationScreen =
@@ -15,6 +16,7 @@ enum class NavigationScreen {
             SignUpScreen.name -> SignUpScreen
             HomeScreen.name -> HomeScreen
             SearchScreen.name -> SearchScreen
+            DetailScreen.name -> DetailScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

@@ -378,16 +378,19 @@ fun LazyRow() {
 fun LazyColumn() {
     val items = listOf(
         ItemList(
+            item_id = 1,
             imageResId = R.drawable.columnimage1,
             text1 = "Nasi Padang Putri Ujung",
             text2 = "0.64 km",
             text3 = "4.6"
         ), ItemList(
+            item_id = 2,
             imageResId = R.drawable.columnimage2,
             text1 = "Ayam Bakar Krakatau",
             text2 = "4.64 km",
             text3 = "4.1"
         ), ItemList(
+            item_id = 3,
             imageResId = R.drawable.columnimage3,
             text1 = "Martabak Golden",
             text2 = "8.64 km",

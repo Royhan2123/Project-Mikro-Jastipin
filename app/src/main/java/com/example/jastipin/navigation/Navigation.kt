@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jastipin.page.DetailScreen
 import com.example.jastipin.page.HomeScreen
 import com.example.jastipin.page.SearchScreen
 import com.example.jastipin.page.SignInScreen
@@ -33,6 +34,9 @@ fun Navigation(){
         }
         composable(NavigationScreen.SearchScreen.name) {
             SearchScreen(navController = navController)
+        }
+        composable(NavigationScreen.DetailScreen.name) {
+            DetailScreen(navController = navController)
         }
     }
 }
