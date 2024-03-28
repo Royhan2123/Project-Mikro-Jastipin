@@ -17,3 +17,4 @@ import com.example.jastipin.R
     var nunitoBold = FontFamily(Font(resId = R.font.nunitobold))
     var nunitoRegular = FontFamily(Font(resId = R.font.nunitoregular))
     var nunitoMedium = FontFamily(Font(resId = R.font.nunitomedium))
+

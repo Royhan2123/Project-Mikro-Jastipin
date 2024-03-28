@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
+import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interMedium
 import com.example.jastipin.ui.theme.interSemiBold
@@ -366,7 +367,10 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                // TODO
+                navController.popBackStack(
+                    NavigationScreen.HalamanBottom.name,
+                    inclusive = false
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()

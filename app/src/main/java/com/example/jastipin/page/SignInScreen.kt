@@ -377,9 +377,11 @@ fun SignInScreen(
         }
         Button(
             onClick = {
-                navController.popBackStack(
-                    // TODO THIS NOT FUNCTION
-                )
+                navController.navigate(NavigationScreen.HalamanBottom.name) {
+                    popUpTo(NavigationScreen.HalamanSignInScreen.name) {
+                        inclusive = true
+                    }
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()
