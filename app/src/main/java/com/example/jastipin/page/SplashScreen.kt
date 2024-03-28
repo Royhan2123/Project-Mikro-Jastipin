@@ -56,9 +56,11 @@ fun SplashScreen(navController: NavController) {
         )
         Button(
             onClick = {
-                navController.navigate(
-                    NavigationScreen.HalamanSignInScreen.name
-                )
+                navController.navigate(NavigationScreen.HalamanSignInScreen.name) {
+                    popUpTo(NavigationScreen.SplashScreen.name) {
+                        inclusive = true
+                    }
+                }
             },
             modifier = Modifier
                 .width(180.dp)

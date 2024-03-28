@@ -367,10 +367,11 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = {
-                navController.popBackStack(
-                    NavigationScreen.HalamanBottom.name,
-                    inclusive = false
-                )
+                navController.navigate(NavigationScreen.HalamanBottom.name) {
+                    popUpTo(NavigationScreen.HalamanSignInScreen.name) {
+                        inclusive = true
+                    }
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()

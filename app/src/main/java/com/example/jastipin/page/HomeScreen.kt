@@ -1,7 +1,6 @@
 package com.example.jastipin.page
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -39,7 +37,6 @@ import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
-import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interRegular
 import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.nunitoMedium
@@ -51,7 +48,6 @@ import com.example.jastipin.widget.ItemList
 import com.example.jastipin.widget.LazyColumnWithRows
 import com.example.jastipin.widget.LazyRowWithColumn
 import com.example.jastipin.widget.ListItem
-import com.example.jastipin.widget.items
 
 @Composable
 fun HomeScreen(navController: NavController) {
