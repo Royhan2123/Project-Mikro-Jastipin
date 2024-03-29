@@ -16,6 +16,7 @@ import com.example.jastipin.page.SearchScreen
 import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
+import com.example.jastipin.page.WishlistScreen
 
 
 // untuk mengatur navigation yang di inginkan.
@@ -60,14 +61,17 @@ fun Navigation() {
         composable(NavigationScreen.HomeScreen.name) {
             HomeScreen(navController = navController)
         }
-        composable(NavigationScreen.SearchScreen.name) {
-            SearchScreen(navController = navController)
-        }
         composable(NavigationScreen.HistoryScreen.name) {
             HistoryScreen(navController = navController)
         }
         composable(NavigationScreen.AccountScreen.name) {
             AccountScreen(navController = navController)
+        }
+        composable(NavigationScreen.SearchScreen.name) {
+            SearchScreen(navController = navController)
+        }
+        composable(NavigationScreen.WishtlistScreen.name) {
+            WishlistScreen(navController = navController)
         }
     }
 }

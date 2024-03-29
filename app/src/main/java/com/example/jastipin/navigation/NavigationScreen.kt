@@ -13,6 +13,7 @@ package com.example.jastipin.navigation
         HomeScreen,
         SearchScreen,
         HistoryScreen,
+        WishtlistScreen,
         AccountScreen;
 
         fun fromRoute(route:String): NavigationScreen =
@@ -28,6 +29,7 @@ package com.example.jastipin.navigation
                 HomeScreen.name -> HomeScreen
                 SearchScreen.name -> SearchScreen
                 HistoryScreen.name -> HistoryScreen
+                WishtlistScreen.name -> WishtlistScreen
                 AccountScreen.name -> AccountScreen
                 else -> throw IllegalArgumentException("Route $route is not recognized")
             }

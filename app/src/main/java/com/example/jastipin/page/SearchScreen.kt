@@ -1,7 +1,6 @@
 package com.example.jastipin.page
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +18,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults.textFieldColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,32 +44,34 @@ import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
 import com.example.jastipin.ui.theme.accgrey2
 import com.example.jastipin.ui.theme.accyellow
-import com.example.jastipin.ui.theme.grey
+import com.example.jastipin.ui.theme.black
+import com.example.jastipin.ui.theme.interRegular
 import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.outlinebox
 import com.example.jastipin.widget.SearchViewModel
 
-data class SearchItemList(
-    val imageResId: Int,
-    val namaumkm: String,
-    val ratingumkm: String,
-    val lokasiumkm: String
-) {
-    fun doesMatchSearchQuery(query: String): Boolean {
-        val matchingCombinations = listOf(
-            "$imageResId",
-            namaumkm,
-            ratingumkm,
-            lokasiumkm
-        )
+//data class SearchItemList(
+//    val imageResId: Int,
+//    val namaumkm: String,
+//    val ratingumkm: String,
+//    val lokasiumkm: String
+//) {
+//    fun doesMatchSearchQuery(query: String): Boolean {
+//        val matchingCombinations = listOf(
+//            "$imageResId",
+//            namaumkm,
+//            ratingumkm,
+//            lokasiumkm
+//        )
+//
+//        return matchingCombinations.any {
+//            it.contains(query, ignoreCase = true)
+//        }
+//    }
+//}
 
-        return matchingCombinations.any {
-            it.contains(query, ignoreCase = true)
-        }
-    }
-}
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(navController: NavController) {
     val viewModel = viewModel<SearchViewModel>()
@@ -79,7 +82,6 @@ fun SearchScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(grey)
     ) {
         Column(
             modifier = Modifier
@@ -101,7 +103,7 @@ fun SearchScreen(navController: NavController) {
                             shape = RoundedCornerShape(8.dp)
                         )
                         .clickable {
-                            navController.navigate(NavigationScreen.HomeScreen.name)
+                            navController.navigate(NavigationScreen.HalamanBottom.name)
                         },
                     contentAlignment = Alignment.Center
                 ) {
@@ -116,20 +118,21 @@ fun SearchScreen(navController: NavController) {
                     modifier = Modifier
                         .width(305.dp)
                         .height(55.dp)
-                        .background(grey)
-                        .border(
-                            width = 1.dp,
-                            color = outlinebox,
-                            shape = RoundedCornerShape(8.dp)
-                        )
                 ) {
-                    TextField(
-                        colors = textFieldColors(grey),
+                    OutlinedTextField(
                         value = searchText,
                         onValueChange = viewModel::onSearchTextChange,
+                        placeholder = {
+                            Text(text = "Cari Yang Kamu Inginkan...")
+                        },
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        placeholder = { androidx.compose.material.Text(text = "Cari Yang Kamu Inginkan") }
+                            .fillMaxWidth()
+                            .height(65.dp),
+                        textStyle = TextStyle(
+                            color = black,
+                            fontSize = 15.sp,
+                            fontFamily = interRegular
+                        )
                     )
                 }
             }
@@ -198,11 +201,11 @@ fun SearchScreen(navController: NavController) {
 
                         Divider(color = accgrey2, thickness = 2.dp)
                     }
-                    }
                 }
             }
         }
     }
+}
 
 
 @Preview
