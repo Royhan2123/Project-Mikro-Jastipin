@@ -84,6 +84,9 @@ fun HomeScreen(navController: NavController) {
                     Image(
                         painter = painterResource(id = R.drawable.iconchat),
                         contentDescription = "Star Icon", Modifier.size(35.dp)
+                            .clickable {
+
+                            }
                     )
                 }
             }

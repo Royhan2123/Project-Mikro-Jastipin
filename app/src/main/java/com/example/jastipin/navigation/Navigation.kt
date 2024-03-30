@@ -5,10 +5,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.page.AccountScreen
+import com.example.jastipin.page.ChatScreen
 import com.example.jastipin.page.ForgotPassword
 import com.example.jastipin.page.ForgotPassword2
 import com.example.jastipin.page.ForgotPasswordDone
 import com.example.jastipin.page.HalamanBottom
+import com.example.jastipin.page.HalamanChatScreen
 import com.example.jastipin.page.HalamanSignInScreen
 import com.example.jastipin.page.HistoryScreen
 import com.example.jastipin.page.HomeScreen
@@ -72,6 +74,12 @@ fun Navigation() {
         }
         composable(NavigationScreen.WishtlistScreen.name) {
             WishlistScreen(navController = navController)
+        }
+        composable(NavigationScreen.ChatScreen.name) {
+            ChatScreen(navController = navController)
+        }
+        composable(NavigationScreen.HalamanChatScreen.name) {
+            HalamanChatScreen(navController = navController)
         }
     }
 }
