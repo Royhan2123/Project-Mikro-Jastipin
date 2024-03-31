@@ -5,9 +5,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,7 +19,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Colors
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -32,6 +36,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -44,6 +49,7 @@ import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
+import com.example.jastipin.ui.theme.accyellow
 import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interRegular
 import com.example.jastipin.ui.theme.nunitoBold
@@ -56,9 +62,30 @@ import com.example.jastipin.widget.ItemList
 import com.example.jastipin.widget.LazyColumnWithRows
 import com.example.jastipin.widget.LazyRowWithColumn
 import com.example.jastipin.widget.ListItem
+import com.example.jastipin.widget.addressUMKM
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    navController: NavController,
+    //  column parameter
+    imageId: Array<Int>,
+    nameUMKM: Array<String>,
+    descriptionUMKM: Array<String>,
+    range2UMKM: Array<String>,
+    rating2UMKM: Array<String>,
+    alamatUMKM: Array<String>,
+
+    //  row parameter
+    home2RowPhotos: Array<Int>,
+    home2RowTitleUMKM: Array<String>,
+    home2RowRangeUMKM: Array<String>,
+    home2RowRatingUMKM: Array<String>,
+
+    // required Detail
+    home2RowDescription: Array<String>,
+    home2RowAddressUMKM: Array<String>,
+
+    ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -308,7 +335,21 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
-            LazyRow()
+            androidx.compose.foundation.lazy.LazyRow(contentPadding = PaddingValues(2.dp)) {
+                val itemCount = imageId.size
+                items(itemCount) {
+                    RowItem(
+                        homeRowItemIndex = it,
+                        homeRowPhotos = home2RowPhotos,
+                        homeRowTitleUMKM = home2RowTitleUMKM,
+                        homeRowRangeUMKM = home2RowRangeUMKM,
+                        homeRowRatingUMKM = home2RowRatingUMKM,
+                        homeRowDescription = home2RowDescription,
+                        homeRowAddressUMKM = home2RowAddressUMKM,
+                        navController = navController
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -341,69 +382,156 @@ fun HomeScreen(navController: NavController) {
                     )
                 }
             }
+            androidx.compose.foundation.lazy.LazyColumn(contentPadding = PaddingValues(2.dp)) {
+                val itemCount = imageId.size
+                items(itemCount) {
+                    ColumnItem(
+                        itemIndex = it,
+                        photos = imageId,
+                        titleUMKM = nameUMKM,
+                        descriptUMKM = descriptionUMKM,
+                        rangeUMKM = range2UMKM,
+                        ratingUMKM = rating2UMKM,
+                        addreessUMKM = alamatUMKM,
+                        navController = navController
+                    )
+                }
+            }
+        }
+    }
+}
 
-            LazyColumn()
+
+@Composable
+fun RowItem(
+    homeRowItemIndex: Int,
+    homeRowPhotos: Array<Int>,
+    homeRowTitleUMKM: Array<String>,
+    homeRowRangeUMKM: Array<String>,
+    homeRowRatingUMKM: Array<String>,
+
+    // required Detail
+    homeRowDescription: Array<String>,
+    homeRowAddressUMKM: Array<String>,
+
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .padding(end = 18.dp)
+            .width(183.dp)
+            .height(163.dp)
+            .clickable {
+                navController.navigate("${NavigationScreen.DetailScreen2.name}/$homeRowItemIndex")
+            },
+    ) {
+        Image(
+            painter = painterResource(id = homeRowPhotos[homeRowItemIndex]),
+            contentDescription = null,
+            modifier = Modifier
+                .width(183.dp)
+                .height(103.dp)
+                .clip(shape = RoundedCornerShape(6.dp))
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = homeRowRangeUMKM[homeRowItemIndex],
+            fontFamily = nunitoBold,
+            fontSize = 12.sp,
+            color = accgrey
+        )
+        Text(
+            text = homeRowTitleUMKM[homeRowItemIndex],
+            fontFamily = nunitoBold,
+            fontSize = 16.sp,
+            color = accblack
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Icon(
+                imageVector = Icons.Default.Star, contentDescription = null, Modifier.size(15.dp),
+                tint = accyellow
+            )
+            Spacer(modifier = Modifier.padding(end = 2.dp))
+            
+
+            Text(
+                text = homeRowRatingUMKM[homeRowItemIndex],
+                fontFamily = nunitoBold,
+                fontSize = 14.sp,
+                color = accgrey
+            )
         }
     }
 }
 
 @Composable
-fun LazyRow() {
-    val items = remember {
-        listOf(
-            ListItem(
-                imageResId = R.drawable.image1,
-                text1 = "0.64 km - 4 menit",
-                text2 = "Warung Steak Medan",
-                text3 = "Text 3A"
-            ),
-            ListItem(
-                imageResId = R.drawable.image1,
-                text1 = "1.02 km - 5 menit",
-                text2 = "Ayam Penyet Bu Ilis",
-                text3 = "Text 3B"
-            ),
-            ListItem(
-                imageResId = R.drawable.image1,
-                text1 = "0.64 km - 5 menit",
-                text2 = "Nasi Padang Putri Ujung",
-                text3 = "Text 3C"
+fun ColumnItem(
+    itemIndex: Int,
+    photos: Array<Int>,
+    titleUMKM: Array<String>,
+    descriptUMKM: Array<String>,
+    rangeUMKM: Array<String>,
+    ratingUMKM: Array<String>,
+    addreessUMKM: Array<String>,
+    navController: NavController
+) {
+    Row(
+        modifier = Modifier
+            .padding(bottom = 18.dp)
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate("${NavigationScreen.DetailScreen.name}/$itemIndex")
+            },
+    ) {
+        Image(
+            painter = painterResource(id = photos[itemIndex]),
+            contentDescription = null,
+            modifier = Modifier
+                .height(100.dp)
+                .width(100.dp)
+                .clip(shape = RoundedCornerShape(4.dp))
+        )
+        Column(
+            modifier = Modifier
+                .padding(start = 18.dp)
+                .align(Alignment.CenterVertically)
+        ) {
+            Text(
+                text = titleUMKM[itemIndex],
+                fontFamily = nunitoBold,
+                fontSize = 18.sp,
+                color = accblack
             )
-        )
+            Row(
+            ) {
+                Text(
+                    text = rangeUMKM[itemIndex],
+                    fontFamily = nunitoBold,
+                    fontSize = 14.sp,
+                    color = accgrey
+                )
+                Spacer(modifier = Modifier.padding(end = 6.dp))
+                Icon(
+                    modifier = Modifier.size(15.dp),
+                    imageVector = Icons.Default.Star,
+                    tint = accyellow,
+                    contentDescription = "Star"
+                )
+                Spacer(modifier = Modifier.padding(end = 2.dp))
+
+                Text(
+                    text = ratingUMKM[itemIndex],
+                    fontFamily = nunitoBold,
+                    fontSize = 14.sp,
+                    color = accgrey
+                )
+            }
+
+        }
     }
-    LazyRowWithColumn(items = items)
-}
-
-@Composable
-fun LazyColumn() {
-    val items = listOf(
-        ItemList(
-            item_id = 1,
-            imageResId = R.drawable.columnimage1,
-            text1 = "Nasi Padang Putri Ujung",
-            text2 = "0.64 km",
-            text3 = "4.6"
-        ), ItemList(
-            item_id = 2,
-            imageResId = R.drawable.columnimage2,
-            text1 = "Ayam Bakar Krakatau",
-            text2 = "4.64 km",
-            text3 = "4.1"
-        ), ItemList(
-            item_id = 3,
-            imageResId = R.drawable.columnimage3,
-            text1 = "Martabak Golden",
-            text2 = "8.64 km",
-            text3 = "4.2"
-        )
-    )
-    LazyColumnWithRows(items = items)
-}
-
-@Preview
-@Composable
-fun view() {
-    HomeScreen(navController = rememberNavController())
 }
 
 
