@@ -103,7 +103,7 @@ fun SearchScreen(navController: NavController) {
                             shape = RoundedCornerShape(8.dp)
                         )
                         .clickable {
-                            navController.navigate(NavigationScreen.HalamanBottom.name)
+                            navController.popBackStack()
                         },
                     contentAlignment = Alignment.Center
                 ) {
