@@ -75,7 +75,6 @@ fun DetailScreen2(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(grey)
     ) {
 
         Column(
@@ -178,7 +177,7 @@ fun DetailScreen2(
         ) {
             SmallFloatingActionButton(
                 onClick = {
-                    navController.navigate(NavigationScreen.HomeScreen.name)
+                    navController.navigate(BottomNavigationScreen.HomeScreen.title)
                 },
                 containerColor = grey.copy(alpha = 0.8f),
                 contentColor = accblack
@@ -206,16 +205,16 @@ fun DetailScreen2(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 215.dp, horizontal = 25.dp),
+                .padding(vertical = 210.dp, horizontal = 25.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = "")
             FloatingActionButton(
                 modifier = Modifier.size(50.dp),
                 onClick = {
-//                    navController.navigate(NavigationScreen.HomeScreen.name)
+                    navController.navigate("${BottomNavigationScreen.WishlistScreen.title}/$home3RowItemIndex")
                 },
-                backgroundColor = grey,
+                backgroundColor = Color.White
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.loveicon),

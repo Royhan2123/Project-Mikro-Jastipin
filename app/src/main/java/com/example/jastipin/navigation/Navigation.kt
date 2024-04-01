@@ -6,13 +6,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.jastipin.page.AccountScreen
+import com.example.jastipin.page.ChatScreen
 import com.example.jastipin.page.DetailScreen
 import com.example.jastipin.page.DetailScreen2
+import com.example.jastipin.page.ForgotPassword
+import com.example.jastipin.page.ForgotPassword2
+import com.example.jastipin.page.ForgotPasswordDone
+import com.example.jastipin.page.HalamanBottom
+import com.example.jastipin.page.HalamanChatScreen
+import com.example.jastipin.page.HalamanSignInScreen
+import com.example.jastipin.page.HistoryScreen
 import com.example.jastipin.page.HomeScreen
 import com.example.jastipin.page.SearchScreen
 import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
+import com.example.jastipin.page.WishlistScreen
 import com.example.jastipin.widget.addressUMKM
 import com.example.jastipin.widget.descriptUMKM
 import com.example.jastipin.widget.homeRowAddressUMKM
@@ -21,6 +31,7 @@ import com.example.jastipin.widget.homeRowPhotos
 import com.example.jastipin.widget.homeRowRangeUMKM
 import com.example.jastipin.widget.homeRowRatingUMKM
 import com.example.jastipin.widget.homeRowTitleUMKM
+import com.example.jastipin.widget.locationUMKM
 import com.example.jastipin.widget.photos
 import com.example.jastipin.widget.rangeUMKM
 import com.example.jastipin.widget.ratingUMKM
@@ -34,17 +45,39 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = NavigationScreen.HomeScreen.name
+        startDestination = NavigationScreen.SplashScreen.name
     ) {
         composable(NavigationScreen.SplashScreen.name) {
             SplashScreen(navController = navController)
         }
         composable(NavigationScreen.SignInScreen.name) {
-            SignInScreen(navController = navController)
+            SignInScreen(
+                navController = navController,
+                onDaftarClicked = {},
+            )
         }
         composable(NavigationScreen.SignUpScreen.name) {
-            SignUpScreen(navController = navController)
+            SignUpScreen(
+                navController,
+                onLoginClicked = {}
+            )
         }
+        composable(NavigationScreen.ForgotPassword.name) {
+            ForgotPassword(navController)
+        }
+        composable(NavigationScreen.ForgotPassword2.name) {
+            ForgotPassword2(navController)
+        }
+        composable(NavigationScreen.ForgotPasswordDone.name) {
+            ForgotPasswordDone(navController)
+        }
+        composable(NavigationScreen.HalamanBottom.name) {
+            HalamanBottom()
+        }
+        composable(NavigationScreen.HalamanSignInScreen.name) {
+            HalamanSignInScreen(navController)
+        }
+
         composable(NavigationScreen.HomeScreen.name) {
             HomeScreen(
                 navController = navController,
@@ -54,6 +87,8 @@ fun Navigation() {
                 range2UMKM = rangeUMKM,
                 rating2UMKM = ratingUMKM,
                 alamatUMKM = addressUMKM,
+
+
                 home2RowPhotos = homeRowPhotos,
                 home2RowTitleUMKM = homeRowTitleUMKM,
                 home2RowRangeUMKM = homeRowRangeUMKM,
@@ -63,14 +98,46 @@ fun Navigation() {
             )
         }
 
+        composable(NavigationScreen.HistoryScreen.name) {
+            HistoryScreen(navController = navController)
+        }
+        composable(NavigationScreen.AccountScreen.name) {
+            AccountScreen(navController = navController)
+        }
         composable(NavigationScreen.SearchScreen.name) {
             SearchScreen(navController = navController)
         }
+
+//        composable(
+//            "${NavigationScreen.WishlistScreen.name}/{index3}",
+//            arguments = listOf(navArgument(name = "index3") {
+//                type = NavType.IntType
+//                }
+//            )
+//        ) {index ->
+//            WishlistScreen(
+//                itemIndex = index.arguments?.getInt("index3"),
+//                imageId = photos,
+//                title2UMKM = titleUMKM,
+//                range2UMKM = rangeUMKM,
+//                ratins2UMKM = ratingUMKM,
+//                location2UMKM = locationUMKM,
+//                navController = navController
+//            )
+//        }
+
+        composable(NavigationScreen.ChatScreen.name) {
+            ChatScreen(navController = navController)
+        }
+        composable(NavigationScreen.HalamanChatScreen.name) {
+            HalamanChatScreen(navController = navController)
+        }
+
         composable(
             "${NavigationScreen.DetailScreen.name}/{index}",
             arguments = listOf(navArgument(name = "index") {
                 type = NavType.IntType
-                }
+            }
             )
         ) {index ->
 
@@ -107,33 +174,5 @@ fun Navigation() {
             )
         }
 
-//        composable(
-//            NavigationScreen.HomeScreen2.name
-//        ) {
-//            HomeScreen2(
-//                imageId = photos,
-//                nameUMKM = titleUMKM,
-//                range2UMKM = rangeUMKM,
-//                rating2UMKM = ratingUMKM,
-//                navController = navController,
-//            )
-//        }
-
-//        composable(
-//            "${NavigationScreen.DetailScreen.name}/{index}",
-//            arguments = listOf(navArgument(name = "index") {
-//                type = NavType.IntType
-//                }
-//            )
-//        ) {index ->
-//            DetailScreen2(
-//                photos = photos,
-//                namesUMKM = titleUMKM,
-//                descriptionnsUMKM = descriptUMKM,
-//                rangesUMKM = rangeUMKM,
-//                ratingsUMKM = ratingUMKM,
-//                itemIndex = index.arguments?.getInt("index")
-//            )
-//        }
     }
 }

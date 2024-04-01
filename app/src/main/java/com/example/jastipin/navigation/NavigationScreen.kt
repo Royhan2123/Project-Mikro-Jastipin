@@ -3,27 +3,42 @@ package com.example.jastipin.navigation
 // daftar - daftar file yang ingin di gabungkan ke dalam navigation
 enum class NavigationScreen {
     SplashScreen,
+    HalamanSignInScreen,
     SignInScreen,
     SignUpScreen,
+    ForgotPassword,
+    ForgotPassword2,
+    ForgotPasswordDone,
+    HalamanBottom,
     HomeScreen,
     DetailScreen,
+    DetailScreen2,
     SearchScreen,
+    HistoryScreen,
+    WishlistScreen,
+    ChatScreen,
+    HalamanChatScreen,
+    AccountScreen;
 
-    // test data
-    HomeScreen2,
-    DetailScreen2;
-
-
-    fun fromRoute(route:String): NavigationScreen =
-        when(route.substringBefore("/")) {
+    fun fromRoute(route: String): NavigationScreen =
+        when (route.substringBefore("/")) {
             SplashScreen.name -> SplashScreen
-            SignInScreen.name -> SignInScreen
+            SplashScreen.name -> SplashScreen
+            HalamanSignInScreen.name -> HalamanSignInScreen
             SignUpScreen.name -> SignUpScreen
+            ForgotPassword.name -> ForgotPassword
+            ForgotPassword2.name -> ForgotPassword2
+            ForgotPasswordDone.name -> ForgotPasswordDone
+            HalamanBottom.name -> HalamanBottom
             HomeScreen.name -> HomeScreen
             SearchScreen.name -> SearchScreen
+            HistoryScreen.name -> HistoryScreen
+            WishlistScreen.name -> WishlistScreen
+            AccountScreen.name -> AccountScreen
+            ChatScreen.name -> ChatScreen
             DetailScreen.name -> DetailScreen
-            HomeScreen2.name -> HomeScreen2
             DetailScreen2.name -> DetailScreen2
+            HalamanChatScreen.name -> HalamanChatScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

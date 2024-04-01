@@ -1,5 +1,10 @@
 package com.example.jastipin.widget
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.runtime.Composable
 import com.example.jastipin.R
 
 // Home Row Data
@@ -78,6 +83,15 @@ val addressUMKM = arrayOf(
     "Jl. Gentayu Lorong Gelatik, Keputraan, Kota Lubuklinggau",
     "Jl. Yos Sudarso No.08 Rt.02, Taba Koji, Kec. Kota Lubuklinggau"
 )
+
+val locationUMKM = arrayOf(
+    "Lubuklinggau",
+    "Lubuklinggau",
+    "Lubuklinggau",
+)
+
+
+
 
 
 
