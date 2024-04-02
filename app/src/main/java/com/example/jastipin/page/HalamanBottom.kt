@@ -137,17 +137,14 @@ fun HalamanBottom() {
                         home2RowAddressUMKM = homeRowAddressUMKM
                     )
                 }
+
                 composable(BottomNavigationScreen.HistoryScreen.title) {
                     HistoryScreen(navController = navController)
                 }
 
                 composable(
-                    "${BottomNavigationScreen.WishlistScreen.title}/{index}",
-                    arguments = listOf(navArgument(name = "index") {
-                        type = NavType.IntType
-                    }
-                    )
-                ) {index ->
+                    BottomNavigationScreen.WishlistScreen.title
+                ) { index ->
                     WishlistScreen(
                         itemIndex = index.arguments?.getInt("index"),
                         imageId = photos,
@@ -158,24 +155,6 @@ fun HalamanBottom() {
                         navController = navController
                     )
                 }
-
-//                composable(
-//                    "${BottomNavigationScreen.WishlistScreen.title}/{index}",
-//                    arguments = listOf(navArgument(name = "index") {
-//                        type = NavType.IntType
-//                        }
-//                    )
-//                ) {index ->
-//                    WishlistScreen(
-//                        itemIndex = index.arguments?.getInt("index"),
-//                        imageId = photos,
-//                        title2UMKM = titleUMKM,
-//                        range2UMKM = rangeUMKM,
-//                        ratins2UMKM = ratingUMKM,
-//                        location2UMKM = locationUMKM,
-//                        navController = navController
-//                    )
-//                }
 
                 composable(BottomNavigationScreen.AccountScreen.title) {
                     AccountScreen(navController = navController)
@@ -203,6 +182,10 @@ fun HalamanBottom() {
                         itemIndex = index.arguments?.getInt("index"),
                         navController = navController,
                     )
+                }
+
+                composable(NavigationScreen.CartScreen.name) {
+                    CartScreen(navController = navController)
                 }
 
                 composable(

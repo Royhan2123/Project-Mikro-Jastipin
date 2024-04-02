@@ -17,6 +17,7 @@ enum class NavigationScreen {
     HistoryScreen,
     WishlistScreen,
     ChatScreen,
+    CartScreen,
     HalamanChatScreen,
     AccountScreen;
 
@@ -39,6 +40,7 @@ enum class NavigationScreen {
             DetailScreen.name -> DetailScreen
             DetailScreen2.name -> DetailScreen2
             HalamanChatScreen.name -> HalamanChatScreen
+            CartScreen.name -> CartScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

@@ -52,10 +52,6 @@ import com.example.jastipin.ui.theme.nunitoRegular
 import com.example.jastipin.ui.theme.nunitoSemiBold
 import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.outlinebox
-import com.example.jastipin.widget.ItemList
-import com.example.jastipin.widget.LazyColumnWithRows
-import com.example.jastipin.widget.LazyRowWithColumn
-import com.example.jastipin.widget.ListItem
 
 @Composable
 fun HomeScreen(

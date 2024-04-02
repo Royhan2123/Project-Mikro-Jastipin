@@ -1,5 +1,6 @@
 package com.example.jastipin.navigation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -7,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.jastipin.page.AccountScreen
+import com.example.jastipin.page.CartScreen
 import com.example.jastipin.page.ChatScreen
 import com.example.jastipin.page.DetailScreen
 import com.example.jastipin.page.DetailScreen2
@@ -126,6 +128,8 @@ fun Navigation() {
 //            )
 //        }
 
+
+
         composable(NavigationScreen.ChatScreen.name) {
             ChatScreen(navController = navController)
         }
@@ -152,6 +156,10 @@ fun Navigation() {
                 itemIndex = index.arguments?.getInt("index"),
                 navController = navController,
             )
+        }
+
+        composable(NavigationScreen.CartScreen.name) {
+            CartScreen(navController = navController)
         }
 
         composable(
