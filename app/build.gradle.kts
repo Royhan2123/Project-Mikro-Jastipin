@@ -1,15 +1,17 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.example.jastipin"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.jastipin"
-        minSdk = 29
+        minSdk = 28
+        //noinspection OldTargetApi,EditedTargetSdkVersion
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -30,11 +32,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+        languageVersion = "1.9"
     }
     buildFeatures {
         compose = true
@@ -51,7 +54,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -66,4 +69,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.material:material:1.6.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 }

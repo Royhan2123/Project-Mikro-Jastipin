@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">Jastipin</string>
+    <string name="image_umkm1">Pesan makanan kamu dengan mudah</string>
+    <string name="home">Home</string>
+    <string name="daftar">Daftar</string>
+    <string name="email">Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="masuk">Masuk</string>
+    <string name="lupa_password">Lupa Password</string>
+    <string name="umkm1">umkm-1</string>
+    <string name="atau">atau</string>
+    <string name="google">google</string>
+    <string name="facebook">facebook</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="apakah_anda_sudah_memiliki_akun">Apakah Anda sudah memiliki akun?</string>
+    <string name="twitter">twitter</string>
+    <string name="nama">Nama</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="alamat">Alamat</string>
+    <string name="konfirmasi_kata_sandi">Konfirmasi Kata Sandi</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="desk_forgot_password">Silakan masukkan alamat email Anda. Kemudian, kami akan mengirimkan kode OTP ke alamat email yang Anda berikan.</string>
+    <string name="masukkan_email_Anda">Masukkan Email Anda</string>
+    <string name="verifikasi_otp">Verifikasi OTP</string>
+    <string name="desk_kode_otp"> Masukkan kode OTP yang sudah dikirimkan</string>
+    <string name="reset_password_berhasil"> Reset Password Berhasil!</string>
+    <string name="password_reset"> Password anda telah berhasil di reset.</string>
+    <string name="lanjutkan"> Lanjutkan</string>
+    <string name="lanjut"> Lanjut</string>
+    <string name="kirim"> Kirim</string>
+    <string name="splash_screen"> Splas-Screen-Jastipin</string>
+    <string name="from"> From </string>
+    <string name="abhinaya_team">Abhinaya Team</string>
+    <string name="riwayat">Riwayat</string>
+
 </resources>
