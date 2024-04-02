@@ -68,5 +68,5 @@ fun SplashScreenDriver(navController: NavController) {
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewSplashScreenDriver() {
-    SplashScreen(navController = rememberNavController())
+    SplashScreenDriver(navController = rememberNavController())
 }

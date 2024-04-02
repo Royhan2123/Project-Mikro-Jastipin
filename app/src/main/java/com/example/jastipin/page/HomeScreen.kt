@@ -50,7 +50,6 @@ import com.example.jastipin.ui.theme.nunitoRegular
 import com.example.jastipin.ui.theme.nunitoSemiBold
 import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.outlinebox
-import com.example.jastipin.widget.ListItem
 
 @Composable
 fun HomeScreen(
@@ -396,33 +395,6 @@ fun HomeScreen(
         }
     }
 }
-
-@Composable
-fun LazyRow() {
-    val items = remember {
-        listOf(
-            ListItem(
-                imageResId = R.drawable.image1,
-                text1 = "0.64 km - 4 menit",
-                text2 = "Warung Steak Medan",
-                text3 = "Text 3A"
-            ),
-            ListItem(
-                imageResId = R.drawable.image2,
-                text1 = "1.02 km - 5 menit",
-                text2 = "Ayam Penyet Bu Ilis",
-                text3 = "Text 3B"
-            ),
-            ListItem(
-                imageResId = R.drawable.image3,
-                text1 = "0.64 km - 5 menit",
-                text2 = "Nasi Padang Putri Ujung",
-                text3 = "Text 3C"
-            )
-        )
-    }
-}
-
 
 @Composable
 fun RowItem(

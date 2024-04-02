@@ -137,6 +137,7 @@ fun HalamanBottom() {
                         home2RowAddressUMKM = homeRowAddressUMKM
                     )
                 }
+
                 composable(BottomNavigationScreen.HistoryScreen.title) {
                     HistoryScreen(navController = navController)
                 }
@@ -144,12 +145,8 @@ fun HalamanBottom() {
                     WishlistScreen(navController = navController)
                 }
                 composable(
-                    "${BottomNavigationScreen.WishlistScreen.title}/{index}",
-                    arguments = listOf(navArgument(name = "index") {
-                        type = NavType.IntType
-                    }
-                    )
-                ) {index ->
+                    BottomNavigationScreen.WishlistScreen.title
+                ) { index ->
                     WishlistScreen(
                         itemIndex = index.arguments?.getInt("index"),
                         imageId = photos,
@@ -192,6 +189,10 @@ fun HalamanBottom() {
                         itemIndex = index.arguments?.getInt("index"),
                         navController = navController,
                     )
+                }
+
+                composable(NavigationScreen.CartScreen.name) {
+                    CartScreen(navController = navController)
                 }
 
                 composable(

@@ -17,6 +17,7 @@ enum class NavigationScreen {
     DetailScreen,
     DetailScreen2,
     ChatScreen,
+    CartScreen,
     HalamanChatScreen,
     FindDriverScreen,
     SplashScreenDriver,
@@ -45,6 +46,7 @@ enum class NavigationScreen {
             HalamanChatScreen.name -> HalamanChatScreen
             FindDriverScreen.name -> FindDriverScreen
             SplashScreenDriver.name -> SplashScreenDriver
+            CartScreen.name -> CartScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

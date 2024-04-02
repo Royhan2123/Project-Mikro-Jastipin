@@ -1,6 +1,8 @@
 package com.example.jastipin.page
 
 import androidx.compose.foundation.Image
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,10 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SmallFloatingActionButton
@@ -24,12 +28,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.jastipin.R
+import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
 import com.example.jastipin.ui.theme.accyellow
@@ -38,6 +45,7 @@ import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interBold
 import com.example.jastipin.ui.theme.interMedium
 import com.example.jastipin.ui.theme.interRegular
+import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.orange
 
 @Composable
@@ -49,8 +57,10 @@ fun DetailScreen2(
     home3RowRating: Array<String>,
     home3RowAddress: Array<String>,
 
+//    context: Context,
     navController: NavController
 ) {
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -147,6 +157,10 @@ fun DetailScreen2(
                     Spacer(modifier = Modifier.height(10.dp))
                     Divider(color = orange, thickness = 2.dp)
                 }
+
+                // product
+                columnItemDetail()
+
             }
         }
         Row(
@@ -170,7 +184,7 @@ fun DetailScreen2(
             }
             SmallFloatingActionButton(
                 onClick = {
-//                    navController.navigate(NavigationScreen.HomeScreen.name)
+                    navController.navigate(NavigationScreen.CartScreen.name)
                 },
                 containerColor = grey.copy(alpha = 0.8f),
                 contentColor = accblack
@@ -192,7 +206,7 @@ fun DetailScreen2(
             FloatingActionButton(
                 modifier = Modifier.size(50.dp),
                 onClick = {
-                    navController.navigate("${BottomNavigationScreen.WishlistScreen.title}/$home3RowItemIndex")
+                    Toast.makeText(context, "Tersimpan di Wishlist", Toast.LENGTH_SHORT).show()
                 },
                 backgroundColor = Color.White
             ) {
@@ -206,4 +220,69 @@ fun DetailScreen2(
         }
     }
 }
+
+@Composable
+fun columnItemDetail() {
+    val context = LocalContext.current
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.detailimage),
+            contentDescription = null,
+            modifier = Modifier
+                .height(80.dp)
+                .width(80.dp)
+                .clip(shape = RoundedCornerShape(4.dp))
+        )
+        Spacer(modifier = Modifier.width(15.dp))
+
+        Column {
+            androidx.compose.material.Text(
+                text = "Ayam Bakar",
+                fontFamily = nunitoBold,
+                fontSize = 17.sp,
+                color = accblack
+            )
+
+            androidx.compose.material.Text(
+                text = "26 Terjual",
+                fontFamily = nunitoBold,
+                fontSize = 13.sp,
+                color = accgrey
+            )
+            androidx.compose.material.Text(
+                text = "Rp 13.000,-",
+                fontFamily = nunitoBold,
+                fontSize = 11.sp,
+                color = accblack
+            )
+        }
+        Spacer(modifier = Modifier.width(120.dp))
+        Icon(
+            imageVector = Icons.Default.AddCircleOutline,
+            contentDescription = null,
+            Modifier
+                .size(25.dp)
+                .align(Alignment.Bottom)
+                .clickable {
+                    Toast.makeText(context, "Berhasil menambahkan ke keranjang", Toast.LENGTH_SHORT).show()
+                },
+            tint = orange
+        )
+    }
+    Spacer(modifier = Modifier.height(12.dp))
+}
+
+
+//@Preview
+//@Composable
+//fun viewww() {
+//    columnItemDetail()
+//}
 

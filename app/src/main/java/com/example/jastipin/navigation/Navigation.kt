@@ -1,11 +1,13 @@
 package com.example.jastipin.navigation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.page.AccountScreen
+import com.example.jastipin.page.CartScreen
 import com.example.jastipin.page.ChatScreen
 import androidx.navigation.navArgument
 import com.example.jastipin.page.DetailScreen
@@ -117,9 +119,6 @@ fun Navigation() {
         composable(NavigationScreen.HistoryScreen.name) {
             HistoryScreen(navController = navController)
         }
-        composable(NavigationScreen.AccountScreen.name) {
-            AccountScreen(navController = navController)
-        }
         composable(NavigationScreen.HistoryScreen.name) {
             HistoryScreen(navController = navController)
         }
@@ -132,59 +131,67 @@ fun Navigation() {
         composable(NavigationScreen.WishtlistScreen.name) {
             WishlistScreen(navController = navController)
         }
-        composable(NavigationScreen.HalamanChatScreen.name) {
-            HalamanChatScreen(navController = navController)
-        }
 
-        composable(NavigationScreen.ChatScreen.name) {
-            ChatScreen(navController = navController)
-        }
-        composable(NavigationScreen.FindDriverScreen.name) {
-            FindDriverScreen(navController = navController)
-        }
-        composable(NavigationScreen.SplashScreenDriver.name) {
-            SplashScreenDriver(navController = navController)
-        }
-        composable(
-            "${NavigationScreen.DetailScreen.name}/{index}",
-            arguments = listOf(navArgument(name = "index") {
-                type = NavType.IntType
+            composable(NavigationScreen.ChatScreen.name) {
+                ChatScreen(navController = navController)
             }
-            )
-        ) { index ->
-
-            DetailScreen(
-                // Column Rev
-                photos = photos,
-                namesUMKM = titleUMKM,
-                descriptionnsUMKM = descriptUMKM,
-                rangesUMKM = rangeUMKM,
-                ratingsUMKM = ratingUMKM,
-                addresssUMKM = addressUMKM,
-                itemIndex = index.arguments?.getInt("index"),
-                navController = navController,
-            )
-        }
-
-        composable(
-            "${NavigationScreen.DetailScreen2.name}/{index2}",
-            arguments = listOf(navArgument(name = "index2") {
-                type = NavType.IntType
+            composable(NavigationScreen.HalamanChatScreen.name) {
+                HalamanChatScreen(navController = navController)
             }
-            )
-        ) { index ->
 
-            DetailScreen2(
-                navController = navController,
-                // Row Rev
-                home3RowItemIndex = index.arguments?.getInt("index2"),
-                home3RowPhotos = homeRowPhotos,
-                home3RowDescription = homeRowDescription,
-                home3RowTitle = homeRowTitleUMKM,
-                home3RowRating = homeRowRatingUMKM,
-                home3RowAddress = homeRowAddressUMKM,
-            )
+            composable(NavigationScreen.ChatScreen.name) {
+                ChatScreen(navController = navController)
+            }
+            composable(NavigationScreen.FindDriverScreen.name) {
+                FindDriverScreen(navController = navController)
+            }
+            composable(NavigationScreen.SplashScreenDriver.name) {
+                SplashScreenDriver(navController = navController)
+            }
+            composable(
+                "${NavigationScreen.DetailScreen.name}/{index}",
+                arguments = listOf(navArgument(name = "index") {
+                    type = NavType.IntType
+                }
+                )
+            ) { index ->
+
+                DetailScreen(
+                    // Column Rev
+                    photos = photos,
+                    namesUMKM = titleUMKM,
+                    descriptionnsUMKM = descriptUMKM,
+                    rangesUMKM = rangeUMKM,
+                    ratingsUMKM = ratingUMKM,
+                    addresssUMKM = addressUMKM,
+                    itemIndex = index.arguments?.getInt("index"),
+                    navController = navController,
+                )
+            }
+
+            composable(NavigationScreen.CartScreen.name) {
+                CartScreen(navController = navController)
+            }
+
+            composable(
+                "${NavigationScreen.DetailScreen2.name}/{index2}",
+                arguments = listOf(navArgument(name = "index2") {
+                    type = NavType.IntType
+                }
+                )
+            ) { index ->
+
+                DetailScreen2(
+                    navController = navController,
+                    // Row Rev
+                    home3RowItemIndex = index.arguments?.getInt("index2"),
+                    home3RowPhotos = homeRowPhotos,
+                    home3RowDescription = homeRowDescription,
+                    home3RowTitle = homeRowTitleUMKM,
+                    home3RowRating = homeRowRatingUMKM,
+                    home3RowAddress = homeRowAddressUMKM,
+                )
+            }
+
         }
-
     }
-}

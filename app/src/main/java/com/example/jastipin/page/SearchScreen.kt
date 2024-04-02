@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.accblack
 import com.example.jastipin.ui.theme.accgrey
 import com.example.jastipin.ui.theme.accgrey2
@@ -50,26 +49,6 @@ import com.example.jastipin.ui.theme.nunitoBold
 import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.outlinebox
 import com.example.jastipin.widget.SearchViewModel
-
-//data class SearchItemList(
-//    val imageResId: Int,
-//    val namaumkm: String,
-//    val ratingumkm: String,
-//    val lokasiumkm: String
-//) {
-//    fun doesMatchSearchQuery(query: String): Boolean {
-//        val matchingCombinations = listOf(
-//            "$imageResId",
-//            namaumkm,
-//            ratingumkm,
-//            lokasiumkm
-//        )
-//
-//        return matchingCombinations.any {
-//            it.contains(query, ignoreCase = true)
-//        }
-//    }
-//}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
