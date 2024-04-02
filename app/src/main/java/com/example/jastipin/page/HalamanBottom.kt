@@ -22,13 +22,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.jastipin.navigation.NavigationScreen
 import com.example.jastipin.ui.theme.orange
 import com.example.jastipin.ui.theme.oranges
+import androidx.navigation.navArgument
+import com.example.jastipin.navigation.NavigationScreen
+import com.example.jastipin.widget.addressUMKM
+import com.example.jastipin.widget.descriptUMKM
+import com.example.jastipin.widget.homeRowAddressUMKM
+import com.example.jastipin.widget.homeRowDescription
+import com.example.jastipin.widget.homeRowPhotos
+import com.example.jastipin.widget.homeRowRangeUMKM
+import com.example.jastipin.widget.homeRowRatingUMKM
+import com.example.jastipin.widget.homeRowTitleUMKM
+import com.example.jastipin.widget.locationUMKM
+import com.example.jastipin.widget.photos
+import com.example.jastipin.widget.rangeUMKM
+import com.example.jastipin.widget.ratingUMKM
+import com.example.jastipin.widget.titleUMKM
 
 sealed class BottomNavigationScreen(
     val title: String,
@@ -105,7 +120,22 @@ fun HalamanBottom() {
                 startDestination = BottomNavigationScreen.HomeScreen.title
             ) {
                 composable(BottomNavigationScreen.HomeScreen.title) {
-                    HomeScreen(navController = navController)
+                    HomeScreen(
+                        navController = navController,
+                        imageId = photos,
+                        nameUMKM = titleUMKM,
+                        descriptionUMKM = descriptUMKM,
+                        range2UMKM = rangeUMKM,
+                        rating2UMKM = ratingUMKM,
+                        alamatUMKM = addressUMKM,
+
+                        home2RowPhotos = homeRowPhotos,
+                        home2RowTitleUMKM = homeRowTitleUMKM,
+                        home2RowRangeUMKM = homeRowRangeUMKM,
+                        home2RowRatingUMKM = homeRowRatingUMKM,
+                        home2RowDescription = homeRowDescription,
+                        home2RowAddressUMKM = homeRowAddressUMKM
+                    )
                 }
                 composable(BottomNavigationScreen.HistoryScreen.title) {
                     HistoryScreen(navController = navController)
@@ -113,11 +143,75 @@ fun HalamanBottom() {
                 composable(BottomNavigationScreen.WishlistScreen.title) {
                     WishlistScreen(navController = navController)
                 }
+                composable(
+                    "${BottomNavigationScreen.WishlistScreen.title}/{index}",
+                    arguments = listOf(navArgument(name = "index") {
+                        type = NavType.IntType
+                    }
+                    )
+                ) {index ->
+                    WishlistScreen(
+                        itemIndex = index.arguments?.getInt("index"),
+                        imageId = photos,
+                        title2UMKM = titleUMKM,
+                        range2UMKM = rangeUMKM,
+                        ratins2UMKM = ratingUMKM,
+                        location2UMKM = locationUMKM,
+                        navController = navController
+                    )
+                }
+
                 composable(BottomNavigationScreen.AccountScreen.title) {
                     AccountScreen(navController = navController)
                 }
                 composable(NavigationScreen.SearchScreen.name) {
                     SearchScreen(navController = navController)
+                }
+                composable(NavigationScreen.HalamanChatScreen.name) {
+                    HalamanChatScreen(navController = navController)
+                }
+                composable(NavigationScreen.ChatScreen.name){
+                    ChatScreen(navController = navController)
+                }
+                composable(
+                    "${NavigationScreen.DetailScreen.name}/{index}",
+                    arguments = listOf(navArgument(name = "index") {
+                        type = NavType.IntType
+                    }
+                    )
+                ) { index ->
+
+                    DetailScreen(
+                        // Column Rev
+                        photos = photos,
+                        namesUMKM = titleUMKM,
+                        descriptionnsUMKM = descriptUMKM,
+                        rangesUMKM = rangeUMKM,
+                        ratingsUMKM = ratingUMKM,
+                        addresssUMKM = addressUMKM,
+                        itemIndex = index.arguments?.getInt("index"),
+                        navController = navController,
+                    )
+                }
+
+                composable(
+                    "${NavigationScreen.DetailScreen2.name}/{index2}",
+                    arguments = listOf(navArgument(name = "index2") {
+                        type = NavType.IntType
+                    }
+                    )
+                ) { index ->
+
+                    DetailScreen2(
+                        navController = navController,
+                        // Row Rev
+                        home3RowItemIndex = index.arguments?.getInt("index2"),
+                        home3RowPhotos = homeRowPhotos,
+                        home3RowDescription = homeRowDescription,
+                        home3RowTitle = homeRowTitleUMKM,
+                        home3RowRating = homeRowRatingUMKM,
+                        home3RowAddress = homeRowAddressUMKM,
+                    )
                 }
             }
         }

@@ -14,8 +14,12 @@ enum class NavigationScreen {
     SearchScreen,
     HistoryScreen,
     WishtlistScreen,
+    DetailScreen,
+    DetailScreen2,
     ChatScreen,
     HalamanChatScreen,
+    FindDriverScreen,
+    SplashScreenDriver,
     AccountScreen;
 
     fun fromRoute(route: String): NavigationScreen =
@@ -34,7 +38,13 @@ enum class NavigationScreen {
             WishtlistScreen.name -> WishtlistScreen
             AccountScreen.name -> AccountScreen
             ChatScreen.name -> ChatScreen
+            AccountScreen.name -> AccountScreen
+            ChatScreen.name -> ChatScreen
+            DetailScreen.name -> DetailScreen
+            DetailScreen2.name -> DetailScreen2
             HalamanChatScreen.name -> HalamanChatScreen
+            FindDriverScreen.name -> FindDriverScreen
+            SplashScreenDriver.name -> SplashScreenDriver
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
 }

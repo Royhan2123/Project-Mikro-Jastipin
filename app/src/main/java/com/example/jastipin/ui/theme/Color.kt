@@ -32,11 +32,13 @@ val newColor = (newRed shl 16) or (newGreen shl 8) or newBlue
 val newColorWithAlpha = newColor or 0xFF000000.toInt()
 
 val lightOrange = Color(newColorWithAlpha)
+val green = Color(0xFF23E9B4)
 
 val accgrey2 = Color(0xFFE8E8E8)
 val accgrey = Color(0xFFB7B7B7)
 val accblack = Color(0xFF1F2A37)
 val accyellow = Color(0xFFFFC436)
 val outlinebox = Color(0xFFD6D6D6)
+val fontgrey = Color(0xFF626262)
 
 
