@@ -124,7 +124,7 @@ fun CardHalamanChatScreen(item: HalamanChatScreenModel, onItemClicked: () -> Uni
                     text = item.description,
                     fontFamily = nunitoBold,
                     fontSize = 16.sp,
-                    color = grey
+                    color = Color.Gray
                 )
             }
         }

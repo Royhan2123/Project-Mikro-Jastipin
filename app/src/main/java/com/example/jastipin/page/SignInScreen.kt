@@ -425,7 +425,7 @@ fun SignInScreen(
             Text(
                 text = stringResource(id = R.string.atau),
                 fontSize = 15.sp,
-                color = grey,
+                color = Color.Gray,
                 fontFamily = interSemiBold,
                 fontWeight = FontWeight.SemiBold
             )
@@ -549,7 +549,7 @@ fun SignInScreen(
                     id = R.string.apakah_anda_sudah_memiliki_akun
                 ),
                 fontSize = 11.sp,
-                color = grey,
+                color =  Color.Gray,
                 fontFamily = interSemiBold,
                 fontWeight = FontWeight.SemiBold
             )

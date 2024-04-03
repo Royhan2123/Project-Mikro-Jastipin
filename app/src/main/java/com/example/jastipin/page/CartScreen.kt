@@ -175,7 +175,7 @@ fun CartScreen(
                     tint = accgrey,
                 )
             }
-            Spacer(modifier = Modifier.height(410.dp))
+            Spacer(modifier = Modifier.height(350.dp))
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()

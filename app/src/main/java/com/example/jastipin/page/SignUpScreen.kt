@@ -537,7 +537,7 @@ fun SignUpScreen(
                     id = R.string.sudah_punya_akun
                 ),
                 fontSize = 13.sp,
-                color = grey,
+                color = Color.Gray,
                 fontFamily = interSemiBold,
                 fontWeight = FontWeight.SemiBold
             )

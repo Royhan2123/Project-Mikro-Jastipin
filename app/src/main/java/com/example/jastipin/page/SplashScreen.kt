@@ -98,7 +98,7 @@ fun SplashScreen(navController: NavController) {
                 Text(text = stringResource(id = R.string.from),
                     fontFamily = interMedium,
                     fontSize = 12.sp,
-                    color = grey)
+                    color =  Color.Gray)
                 Text(text = stringResource(id = R.string.abhinaya_team),
                     fontFamily = interMedium,
                     fontSize = 15.sp,
