@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.jastipin"
-        minSdk = 28
+        minSdk = 30
         //noinspection OldTargetApi,EditedTargetSdkVersion
         targetSdk = 33
         versionCode = 1

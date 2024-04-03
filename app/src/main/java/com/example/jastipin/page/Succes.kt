@@ -72,7 +72,7 @@ fun Succes(navController: NavController) {
         Button(
             onClick = {
                 navController.navigate(
-                    NavigationScreen.HalamanBottom.name
+                    BottomNavigationScreen.HomeScreen.title
                 )
             },
             modifier = Modifier

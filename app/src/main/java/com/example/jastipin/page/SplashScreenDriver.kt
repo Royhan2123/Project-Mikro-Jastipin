@@ -47,7 +47,7 @@ fun SplashScreenDriver(navController: NavController) {
                 inclusive = true
             )
         }
-        navController.navigate(NavigationScreen.SignInScreen.name)
+        navController.navigate(NavigationScreen.Succes.name)
     }
     Column(
         modifier = Modifier.fillMaxSize()
@@ -60,7 +60,7 @@ fun SplashScreenDriver(navController: NavController) {
         LottieAnimation(
             composition = lottieComposition,
             progress = progress,
-            modifier = Modifier.size(300.dp)
+            modifier = Modifier.size(500.dp)
         )
     }
 }

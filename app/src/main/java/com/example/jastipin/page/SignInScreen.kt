@@ -72,6 +72,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.jastipin.R
 import com.example.jastipin.navigation.NavigationScreen
+import com.example.jastipin.ui.theme.black
 import com.example.jastipin.ui.theme.grey
 import com.example.jastipin.ui.theme.interBold
 import com.example.jastipin.ui.theme.interMedium

@@ -1,6 +1,7 @@
 package com.example.jastipin.page
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -60,7 +61,12 @@ fun FindDriverScreen(navController: NavController) {
                         topStart = 25.dp,
                         topEnd = 25.dp
                     )
-                ),
+                )
+                .clickable {
+                           navController.navigate(
+                               NavigationScreen.SplashScreenDriver.name
+                           )
+                },
             color = Color.White,
             elevation = 8.dp
         ) {
@@ -69,11 +75,108 @@ fun FindDriverScreen(navController: NavController) {
                     .fillMaxSize()
                     .padding(top = 20.dp)
             ) {
-                CardDriver(navController = rememberNavController(), onClick = {
-                    navController.navigate(
-                        NavigationScreen.SplashScreenDriver.name
-                    )
-                })
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(15.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Surface(
+                                modifier = Modifier
+                                    .width(95.dp)
+                                    .height(90.dp)
+                                    .clip(CircleShape),
+                                color = lightGrey
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.avatar),
+                                    contentDescription = "img-avatar",
+                                    modifier = Modifier
+                                        .width(85.dp)
+                                        .height(80.dp),
+                                    contentScale = ContentScale.Crop,
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(25.dp))
+                            Column {
+                                Text(
+                                    text = "Ready Driver",
+                                    fontSize = 13.sp,
+                                    fontFamily = nunitoRegular,
+                                )
+                                Spacer(modifier = Modifier.height(5.dp))
+                                Icon(
+                                    imageVector = Icons.Outlined.Chat, contentDescription = "chat",
+                                    modifier = Modifier.size(25.dp)
+                                )
+                                Spacer(modifier = Modifier.height(5.dp))
+                                Text(
+                                    text = "Jay Loves",
+                                    fontSize = 20.sp,
+                                    fontFamily = nunitoBold,
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(15.dp))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceEvenly,
+                            modifier = Modifier.fillMaxWidth()
+
+                        ) {
+                            Column {
+                                Text(
+                                    text = "Order#",
+                                    fontSize = 13.sp,
+                                    fontFamily = nunitoRegular,
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "Sembako",
+                                    fontSize = 16.sp,
+                                    fontFamily = nunitoBold,
+                                )
+                            }
+                            Column {
+                                Text(
+                                    text = "ETA Delivery",
+                                    fontSize = 13.sp,
+                                    fontFamily = nunitoRegular,
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "06:00 pm",
+                                    fontSize = 16.sp,
+                                    fontFamily = nunitoBold,
+                                )
+                            }
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Surface(
+                                    modifier = Modifier
+                                        .width(10.dp)
+                                        .height(10.dp)
+                                        .clip(shape = CircleShape),
+                                    color = green
+                                ) {}
+                                Spacer(modifier = Modifier.width(10.dp))
+                                Text(
+                                    text = "On Time",
+                                    fontFamily = nunitoBold,
+                                    fontSize = 16.sp
+                                )
+                            }
+                        }
+                    }
+                }
                 Divider()
                 
                 CardDriver(navController = rememberNavController(), onClick = {})

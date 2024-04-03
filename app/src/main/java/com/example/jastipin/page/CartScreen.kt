@@ -3,6 +3,7 @@ package com.example.jastipin.page
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
@@ -59,7 +61,7 @@ fun CartScreen(
             .background(grey)
     )
     {
-        Column() {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -173,10 +175,12 @@ fun CartScreen(
                     tint = accgrey,
                 )
             }
-        }
-        androidx.compose.material3.BottomAppBar(
-            containerColor = Color.White,
-            actions = {
+            Spacer(modifier = Modifier.height(410.dp))
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+            ) {
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 14.dp)
@@ -205,19 +209,23 @@ fun CartScreen(
                     Button(
                         modifier = Modifier
                             .width(110.dp)
-                            .height(35.dp)
-                        ,
+                            .height(35.dp),
                         onClick = {
-                                  navController.navigate(
-                                      NavigationScreen.FindDriverScreen.name
-                                  )
+                            navController.navigate(
+                                NavigationScreen.FindDriverScreen.name
+                            )
                         },
                         colors = ButtonDefaults.buttonColors(backgroundColor = orange)
                     ) {
                         Text(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 15.dp),
+                                .padding(horizontal = 15.dp)
+                                .clickable {
+                                    navController.navigate(
+                                        NavigationScreen.FindDriverScreen.name
+                                    )
+                                },
                             text = "Pesan",
                             style = TextStyle(
                                 color = Color.White,
@@ -227,11 +235,9 @@ fun CartScreen(
                         )
                     }
                 }
+            }
+        }
 
-            },
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-        )
     }
 }
 

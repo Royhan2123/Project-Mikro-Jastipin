@@ -167,9 +167,19 @@ fun HalamanBottom() {
                 composable(NavigationScreen.HalamanChatScreen.name) {
                     HalamanChatScreen(navController = navController)
                 }
-                composable(NavigationScreen.ChatScreen.name){
+                composable(NavigationScreen.ChatScreen.name) {
                     ChatScreen(navController = navController)
                 }
+                composable(NavigationScreen.FindDriverScreen.name) {
+                    FindDriverScreen(navController = navController)
+                }
+                composable(NavigationScreen.Succes.name) {
+                    Succes(navController = navController)
+                }
+                composable(NavigationScreen.SplashScreenDriver.name) {
+                    SplashScreenDriver(navController = navController)
+                }
+
                 composable(
                     "${NavigationScreen.DetailScreen.name}/{index}",
                     arguments = listOf(navArgument(name = "index") {

@@ -26,6 +26,7 @@ import com.example.jastipin.page.SignInScreen
 import com.example.jastipin.page.SignUpScreen
 import com.example.jastipin.page.SplashScreen
 import com.example.jastipin.page.SplashScreenDriver
+import com.example.jastipin.page.Succes
 import com.example.jastipin.page.WishlistScreen
 import com.example.jastipin.widget.addressUMKM
 import com.example.jastipin.widget.descriptUMKM
@@ -172,7 +173,9 @@ fun Navigation() {
             composable(NavigationScreen.CartScreen.name) {
                 CartScreen(navController = navController)
             }
-
+        composable(NavigationScreen.Succes.name) {
+            Succes(navController = navController)
+        }
             composable(
                 "${NavigationScreen.DetailScreen2.name}/{index2}",
                 arguments = listOf(navArgument(name = "index2") {
